@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gramática Inglesa</title>
+  
+  <!-- Estilos futuristas y neón -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS Content/grammar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- GSAP para animaciones -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+  <header>
+    <img src="../../../img/Captura_de_pantalla_2024-11-21_160111-removebg-preview.png" alt="" class="logo">
+    <nav>
+        <ul>
+            <li><a href="../../../index.html">Inicio</a></li>
+            
+            <li><a href="#">Tematicas</a>
+            <ul class="dropdown">
+                <li><a href="grammar.html">Grammar</a></li>
+                <li><a href="../../../listening.html">Listening</a></li>
+                <li><a href="../../../writing.html">Writing</a></li>
+                <li><a href="../../../reading.html">Reading</a></li>
+            </ul>
+            </li>
+            <li><a href="../../index.html#about-section">Acerca de nosotros</a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <div class="header-content-grammar">
+      <div class="header-content">
+          <h1>Gramática Inglesa</h1>
+          <p>Aprende sobre la gramática del inglés de manera fácil y dinámica. Explora los niveles y mejora tu conocimiento.</p>
+      </div>
+  </div>
+
+  <section class="niveles">
+      <div class="nivel" data-level="A1">
+          <h2>A1 - Principiante</h2>
+          <p class="descripcion">En este nivel aprenderás lo básico del inglés: estructuras simples, el verbo 'to be' y sustantivos.</p>
+      </div>
+      <div class="nivel" data-level="A2">
+          <h2>A2 - Básico</h2>
+          <p class="descripcion">En este nivel mejorarás tu gramática con tiempos verbales simples, conectores y comparación de adjetivos.</p>
+      </div>
+      <div class="nivel" data-level="B1">
+          <h2>B1 - Intermedio</h2>
+          <p class="descripcion">En este nivel aprenderás tiempos verbales más avanzados, condicionales y phrasal verbs.</p>
+      </div>
+      
+      <!-- Contenedor para detalles de nivel -->
+      <div class="nivel-detalles" id="nivel-detalles">
+          <div class="detalles-header">
+              <h2 id="detalles-titulo"></h2>
+              <p id="detalles-descripcion"></p>
+          </div>
+          <div class="detalles-temas" id="detalles-temas">
+              <!-- Los temas se cargarán dinámicamente -->
+          </div>
+          <button class="btn-volver" id="btn-volver">
+              <i class="fas fa-arrow-left"></i> Volver
+          </button>
+      </div>
+  </section>
+
+  <!-- Contenedor para detalles específicos del tema -->
+  <div class="tema-detalle-container" id="tema-detalle-container">
+      <div class="tema-detalle-content">
+          <div class="tema-detalle-header">
+              <h2 id="tema-detalle-titulo"></h2>
+              <p id="tema-detalle-descripcion" class="subtitulo"></p>
+          </div>
+          
+          <div class="tema-detalle-body">
+              <div class="seccion-teoria">
+                  <h3>Teoría</h3>
+                  <div id="tema-detalle-teoria"></div>
+              </div>
+              
+              <div class="seccion-importancia">
+                  <h3>Importancia</h3>
+                  <div id="tema-detalle-importancia"></div>
+              </div>
+              
+              <div class="seccion-estructura">
+                  <h3>Estructura</h3>
+                  <div class="tabla-container" id="tema-detalle-estructura"></div>
+              </div>
+              
+              <div class="seccion-ejemplos">
+                  <h3>Ejemplos</h3>
+                  <div id="tema-detalle-ejemplos"></div>
+              </div>
+          </div>
+          
+          <div class="tema-detalle-footer">
+              <button class="btn-volver tema-volver" id="btn-tema-volver">
+                  <i class="fas fa-arrow-left"></i> Volver
+              </button>
+              <button class="btn-practica" id="btn-practica">
+                  <i class="fas fa-tasks"></i> Ir al taller práctico
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Contenedor para el taller práctico -->
+  <div class="taller-practico-container" id="taller-practico-container">
+      <div class="taller-practico-content">
+          <div class="taller-practico-header">
+              <h2 id="taller-titulo">Taller Práctico</h2>
+              <p id="taller-descripcion" class="subtitulo">Pon a prueba tus conocimientos con estas preguntas de selección múltiple.</p>
+          </div>
+          
+          <div class="taller-practico-body" id="taller-practico-body">
+              <!-- Las preguntas se cargarán dinámicamente -->
+          </div>
+          
+          <div class="taller-practico-footer">
+              <button class="btn-volver taller-volver" id="btn-taller-volver">
+                  <i class="fas fa-arrow-left"></i> Volver a la teoría
+              </button>
+              <button class="btn-verificar" id="btn-verificar">
+                  <i class="fas fa-check-circle"></i> Verificar respuestas
+              </button>
+          </div>
+          
+          <div class="taller-resultados" id="taller-resultados">
+              <h3>Resultados</h3>
+              <p id="resultado-texto">Has respondido correctamente <span id="respuestas-correctas">0</span> de <span id="total-preguntas">0</span> preguntas.</p>
+              <div id="detalle-respuestas"></div>
+          </div>
+      </div>
+  </div>
+
+  <script src="../JS Content/grammar.js"></script>
+</body>
+</html>
