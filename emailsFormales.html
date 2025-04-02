@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formal Emails - Exercises</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Mantener los estilos anteriores */
+        :root {
+            --primary-color: #2E3192;
+            --secondary-color: #1BFFFF;
+            --accent-color: #D4145A;
+            --background: #0A0A0A;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --glass-effect: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            top: 0;
+        }
+
+        .logo {
+            height: 50px;
+            filter: drop-shadow(0 0 10px var(--secondary-color));
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem 0;
+            padding-top: 5rem;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .exercise-container {
+            padding: 8rem 5% 5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .exercise {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .exercise h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .exercise p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            color: var(--text-color);
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem 2rem;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./img/Captura_de_pantalla_2024-11-21_160111-removebg-preview.png" alt="Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="translator.html">Translator</a></li>
+                <li><a href="#">Topics</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1 class="page-title">Formal Emails Exercises</h1>
+
+    <div class="exercise-container">
+        <!-- Exercise 1 -->
+        <div class="exercise">
+            <h3>1. Write an appropriate subject line</h3>
+            <p>Write a suitable subject for the following formal email:</p>
+            <p><strong>Content:</strong> Requesting information about a product</p>
+            <input type="text" id="exercise1" placeholder="Write the subject of the email">
+            <button class="submit-button" onclick="checkAnswer1()">Check Answer</button>
+            <p id="feedback1" class="feedback"></p>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="exercise">
+            <h3>2. Write an introduction</h3>
+            <p>Write the first line of a formal email requesting an appointment for a professional meeting:</p>
+            <input type="text" id="exercise2" placeholder="Write the introduction of the email">
+            <button class="submit-button" onclick="checkAnswer2()">Check Answer</button>
+            <p id="feedback2" class="feedback"></p>
+        </div>
+
+        <!-- Exercise 3 -->
+        <div class="exercise">
+            <h3>3. Write the body of the message</h3>
+            <p>Write the body of the email explaining the reason for your meeting request:</p>
+            <input type="text" id="exercise3" placeholder="Write the body of the email">
+            <button class="submit-button" onclick="checkAnswer3()">Check Answer</button>
+            <p id="feedback3" class="feedback"></p>
+        </div>
+
+        <!-- Exercise 4 -->
+        <div class="exercise">
+            <h3>4. Write a formal closing</h3>
+            <p>Write a closing sentence for an email where you thank the reader for their time:</p>
+            <input type="text" id="exercise4" placeholder="Write the closing of the email">
+            <button class="submit-button" onclick="checkAnswer4()">Check Answer</button>
+            <p id="feedback4" class="feedback"></p>
+        </div>
+
+        <!-- Exercise 5 -->
+        <div class="exercise">
+            <h3>5. Write a formal signature</h3>
+            <p>Write an appropriate signature for a formal email (including your name and position):</p>
+            <input type="text" id="exercise5" placeholder="Write the signature of the email">
+            <button class="submit-button" onclick="checkAnswer5()">Check Answer</button>
+            <p id="feedback5" class="feedback"></p>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 Jardines del Caqueta. Calle Principal, Ciudad del Caqueta
+    </footer>
+
+    <script>
+        // Correct answers
+        const correctAnswers = {
+            exercise1: "Request for information about product",
+            exercise2: "Dear [name], I would like to request a meeting",
+            exercise3: "The reason for my request is to discuss...",
+            exercise4: "Thank you for your time and attention, I look forward to your response.",
+            exercise5: "Sincerely, [Your Name], [Your Position]"
+        };
+
+        // Check answers
+        function checkAnswer1() {
+            const answer = document.getElementById('exercise1').value.trim();
+            const feedback = document.getElementById('feedback1');
+            if (answer.toLowerCase() === correctAnswers.exercise1.toLowerCase()) {
+                feedback.textContent = "Correct!";
+                feedback.style.color = "green";
+            } else {
+                feedback.textContent = "Try again.";
+                feedback.style.color = "red";
+            }
+        }
+
+        function checkAnswer2() {
+            const answer = document.getElementById('exercise2').value.trim();
+            const feedback = document.getElementById('feedback2');
+            if (answer.toLowerCase() === correctAnswers.exercise2.toLowerCase()) {
+                feedback.textContent = "Correct!";
+                feedback.style.color = "green";
+            } else {
+                feedback.textContent = "Try again.";
+                feedback.style.color = "red";
+            }
+        }
+
+        function checkAnswer3() {
+            const answer = document.getElementById('exercise3').value.trim();
+            const feedback = document.getElementById('feedback3');
+            if (answer.toLowerCase() === correctAnswers.exercise3.toLowerCase()) {
+                feedback.textContent = "Correct!";
+                feedback.style.color = "green";
+            } else {
+                feedback.textContent = "Try again.";
+                feedback.style.color = "red";
+            }
+        }
+
+        function checkAnswer4() {
+            const answer = document.getElementById('exercise4').value.trim();
+            const feedback = document.getElementById('feedback4');
+            if (answer.toLowerCase() === correctAnswers.exercise4.toLowerCase()) {
+                feedback.textContent = "Correct!";
+                feedback.style.color = "green";
+            } else {
+                feedback.textContent = "Try again.";
+                feedback.style.color = "red";
+            }
+        }
+
+        function checkAnswer5() {
+            const answer = document.getElementById('exercise5').value.trim();
+            const feedback = document.getElementById('feedback5');
+            if (answer.toLowerCase() === correctAnswers.exercise5.toLowerCase()) {
+                feedback.textContent = "Correct!";
+                feedback.style.color = "green";
+            } else {
+                feedback.textContent = "Try again.";
+                feedback.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

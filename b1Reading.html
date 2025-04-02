@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Reading Practice - Level B1</title>
+    <style>
+        :root {
+    --primary-color: #2E3192;
+    --secondary-color: #1BFFFF;
+    --accent-color: #D4145A;
+    --background: #0A0A0A;
+    --text-color: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --glass-effect: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--background);
+    color: var(--text-color);
+    overflow-x: hidden;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(27, 255, 255, 0.2);
+    padding: 30px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+h1 {
+    color: var(--text-color);
+    text-align: center;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    background-color: var(--secondary-color);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+h2 {
+    color: var(--secondary-color);
+    margin-top: 30px;
+    font-size: 1.8rem;
+    background: linear-gradient(45deg, var(--secondary-color), #fff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.reading-text {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 20px;
+    border-left: 4px solid var(--secondary-color);
+    margin-bottom: 25px;
+}
+
+.question {
+    margin-bottom: 25px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.options {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.option {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+}
+
+.option:hover {
+    background: rgba(27, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(27, 255, 255, 0.2);
+}
+
+.selected {
+    background: linear-gradient(45deg, rgba(46, 49, 146, 0.5), rgba(27, 255, 255, 0.5));
+    border-color: var(--secondary-color);
+}
+
+.correct {
+    background: rgba(46, 204, 113, 0.3);
+    border-color: #2ecc71;
+}
+
+.incorrect {
+    background: rgba(231, 76, 60, 0.3);
+    border-color: #e74c3c;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+.retry-btn {
+    display: none;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 15px;
+}
+
+.retry-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+}
+
+/* Cambiar el color de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--background);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+@media (min-width: 600px) {
+    .options {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>English Reading Practice - Level B1</h1>
+        
+        <div class="reading-text">
+            <h2>A Day in the Life of Sarah</h2>
+            <p>Sarah is a 25-year-old graphic designer living in a vibrant city. Every morning, she wakes up at 7:00 AM and starts her day with a cup of coffee. After breakfast, she takes a quick shower and gets dressed for work.</p>
+            <p>At 8:30 AM, Sarah leaves her apartment and takes the subway to her office. She enjoys the ride because she can listen to music or read a book. Once she arrives at work, she checks her emails and plans her tasks for the day.</p>
+            <p>Sarah works on various projects, creating designs for websites and advertisements. She loves being creative and often collaborates with her colleagues. During lunch, she usually goes to a nearby café with her friends, where they discuss their projects and share ideas.</p>
+            <p>In the afternoon, Sarah has a meeting with a client to present her latest designs. She feels a bit nervous but is excited to hear their feedback. After work, she sometimes goes to the gym to stay fit or meets friends for dinner.</p>
+            <p>At the end of the day, Sarah returns home, feeling satisfied with her work. She spends some time relaxing by watching her favorite TV shows or reading a book before going to bed around 11:00 PM.</p>
+        </div>
+        
+        <div id="quiz-container">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+        
+        <button id="submit-btn" class="submit-btn">Check Answers</button>
+        <div id="result" class="result"></div>
+        <button id="retry-btn" class="retry-btn">Try Again</button>
+    </div>
+
+    <script>
+        // Quiz data
+        const questions = [
+            {
+                question: "1. What is Sarah's profession?",
+                options: ["a) Teacher", "b) Graphic designer", "c) Engineer", "d) Doctor"],
+                answer: 1
+            },
+            {
+                question: "2. What time does Sarah wake up?",
+                options: ["a) 6:00 AM", "b) 7:00 AM", "c) 8:00 AM", "d) 9:00 AM"],
+                answer: 1
+            },
+            {
+                question: "3. How does Sarah get to work?",
+                options: ["a) By car", "b) By bus", "c) By subway", "d) By bicycle"],
+                answer: 2
+            },
+            {
+                question: "4. What does Sarah do during lunch?",
+                options: ["a) Works at her desk", "b) Goes to a café", "c) Goes home", "d) Attends meetings"],
+                answer: 1
+            },
+            {
+                question: "5. How does Sarah feel during client meetings?",
+                options: ["a) Excited", "b) Nervous", "c) Bored", "d) Confident"],
+                answer: 1
+            },
+            {
+                question: "6. What does Sarah do after work?",
+                options: ["a) Goes to the gym", "b) Goes shopping", "c) Goes home", "d) Attends classes"],
+                answer: 0
+            },
+            {
+                question: "7. What does Sarah do to relax in the evening?",
+                options: ["a) Watches TV", "b) Goes for a walk", "c) Reads a book", "d) All of the above"],
+                answer: 3
+            },
+            {
+                question: "8. What time does Sarah go to bed?",
+                options: ["a) 10:00 PM", "b) 10:30 PM", "c) 11:00 PM", "d) 11:30 PM"],
+                answer: 2
+            },
+            {
+                question: "9. What does Sarah enjoy about her job?",
+                options: ["a) The salary", "b) The creativity", "c) The location", "d) The hours"],
+                answer: 1
+            },
+            {
+                question: "10. Who does Sarah usually have lunch with?",
+                options: ["a) Alone", "b) Her boss", "c) Her friends", "d) Clients"],
+                answer: 2
+            }
+        ];
+
+        // Get elements
+        const quizContainer = document.getElementById('quiz-container');
+        const submitButton = document.getElementById('submit-btn');
+        const resultDiv = document.getElementById('result');
+        const retryButton = document.getElementById('retry-btn');
+
+        // Generate questions in the DOM
+        function generateQuiz() {
+            questions.forEach((q, qIndex) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `<div>${q.question}</div>`;
+                
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options';
+                
+                q.options.forEach((option, oIndex) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+                    optionDiv.textContent = option;
+                    optionDiv.dataset.qIndex = qIndex;
+                    optionDiv.dataset.oIndex = oIndex;
+                    
+                    optionDiv.addEventListener('click', function() {
+                        // Remove selected class from all options in this question
+                        const questionOptions = document.querySelectorAll(`.option[data-q-index="${qIndex}"]`);
+                        questionOptions.forEach(opt => opt.classList.remove('selected'));
+                        
+                        // Add selected class to this option
+                        this.classList.add('selected');
+                    });
+                    
+                    optionsDiv.appendChild(optionDiv);
+                });
+                
+                questionDiv.appendChild(optionsDiv);
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        // Check answers and show results
+        function checkAnswers() {
+            let score = 0;
+            let answersMissing = false;
+            
+            questions.forEach((q, qIndex) => {
+                const selectedOption = document.querySelector(`.option.selected[data-q-index="${qIndex}"]`);
+                
+                if (!selectedOption) {
+                    answersMissing = true;
+                    return;
+                }
+                
+                const selectedIndex = parseInt(selectedOption.dataset.oIndex);
+                
+                if (selectedIndex === q.answer) {
+                    score++;
+                    selectedOption.classList.add('correct');
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    // Highlight the correct answer
+                    const correctOption = document.querySelector(`.option[data-q-index="${qIndex}"][data-o-index="${q.answer}"]`);
+                    correctOption.classList.add('correct');
+                }
+            });
+            
+            if (answersMissing) {
+                alert('Please answer all questions before submitting.');
+                return;
+            }
+            
+            // Disable all options after submission
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
+            
+            // Show result
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = `Your score: ${score} out of 10`;
+            resultDiv.style.backgroundColor = score >= 7 ? '#d4edda' : '#f8d7da';
+            resultDiv.style.color = score >= 7 ? '#155724' : '#721c24';
+            
+            // Show retry button and hide submit button
+            submitButton.style.display = 'none';
+            retryButton.style.display = 'block';
+        }
+
+        // Reset the quiz
+        function resetQuiz() {
+            // Remove all questions
+            quizContainer.innerHTML = '';
+            
+            // Generate quiz again
+            generateQuiz();
+            
+            // Hide result and retry button, show submit button
+            resultDiv.style.display = 'none';
+            retryButton.style.display = 'none';
+            submitButton.style.display = 'block';
+        }
+
+        // Event listeners
+        submitButton.addEventListener('click', checkAnswers);
+        retryButton.addEventListener('click', resetQuiz);
+
+        // Initialize
+        generateQuiz();
+    </script>
+</body>
+</html> 

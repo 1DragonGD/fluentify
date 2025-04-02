@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Exercises - FLUENTYFY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .exercises-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+
+        .level-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .level-badge.easy {
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+        }
+
+        .level-badge.intermediate {
+            background: linear-gradient(45deg, #2196F3, #03A9F4);
+        }
+
+        .level-badge.expert {
+            background: linear-gradient(45deg, #9C27B0, #673AB7);
+        }
+
+        .exercises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .exercise-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exercise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, var(--primary-color), transparent);
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--secondary-color);
+        }
+
+        .exercise-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            color: var(--primary-color);
+        }
+
+        .exercise-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .exercise-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .exercise-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .start-exercise-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .start-exercise-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+        }
+
+        .back-button {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .no-exercises {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .no-exercises h3 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .no-exercises p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./img/Captura_de_pantalla_2024-11-21_160111-removebg-preview.png" alt="" class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="traductor.html" target="_blank">Traductor</a></li>
+                <li><a href="#">Tematicas</a>
+                    <ul class="dropdown">
+                        <li><a href="">Grammar</a></li>
+                        <li><a href="">Vocabulary</a></li>
+                        <li><a href="">Writing</a></li>
+                        <li><a href="">Reading</a></li>
+                        <li><a href="listening.html">Listening</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Acerca de nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="exercises-container">
+            <div class="level-header">
+                <button class="back-button" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </button>
+                <span class="level-badge" id="levelBadge">Nivel</span>
+                <h1>Ejercicios de <span class="highlight">Listening</span> <span id="levelTitle"></span></h1>
+                <p class="level-description" id="levelDescription"></p>
+            </div>
+
+            <div class="exercises-grid" id="exercisesGrid">
+                <!-- Los ejercicios se cargarán dinámicamente aquí -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Jardines del Caqueta. Calle Principal, Ciudad del Caqueta</p>
+        <div class="social-media">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectedLevel = localStorage.getItem('selectedLevel') || 'easy';
+            
+            // Configurar la información del nivel
+            const levelInfo = {
+                easy: {
+                    title: 'Principiante',
+                    description: 'Ejercicios básicos para mejorar tu comprensión auditiva con vocabulario simple y estructuras básicas.',
+                    badgeClass: 'easy'
+                },
+                intermediate: {
+                    title: 'Intermedio',
+                    description: 'Ejercicios de nivel medio para practicar con conversaciones cotidianas y situaciones comunes.',
+                    badgeClass: 'intermediate'
+                },
+                expert: {
+                    title: 'Avanzado',
+                    description: 'Ejercicios desafiantes con contenido auténtico para perfeccionar tu comprensión auditiva.',
+                    badgeClass: 'expert'
+                }
+            };
+            
+            // Actualizar la interfaz con la información del nivel
+            document.getElementById('levelTitle').textContent = levelInfo[selectedLevel].title;
+            document.getElementById('levelDescription').textContent = levelInfo[selectedLevel].description;
+            
+            const levelBadge = document.getElementById('levelBadge');
+            levelBadge.textContent = `Nivel ${levelInfo[selectedLevel].title}`;
+            levelBadge.className = `level-badge ${levelInfo[selectedLevel].badgeClass}`;
+            
+            const exercises = {
+                easy: [
+                    {
+                        id: 'easy-1',
+                        title: 'Saludos y Presentaciones',
+                        icon: '👋',
+                        difficulty: 'Fácil',
+                        duration: '5 min',
+                        description: 'Practica con saludos básicos y presentaciones personales en inglés.',
+                        audioIndex: [0, 1, 2]
+                    },
+                    {
+                        id: 'easy-2',
+                        title: 'Números y Horas',
+                        icon: '🕐',
+                        difficulty: 'Fácil',
+                        duration: '5 min',
+                        description: 'Aprende a identificar números y horas en conversaciones simples.',
+                        audioIndex: [0]
+                    },
+                ],
+                intermediate: [
+                    {
+                        id: 'intermediate-1',
+                        title: 'Conversaciones Diarias',
+                        icon: '💬',
+                        difficulty: 'Medio',
+                        duration: '10 min',
+                        description: 'Mejora tu comprensión de conversaciones cotidianas con vocabulario más amplio.',
+                        audioIndex: [0,1,2]
+                    },
+                    {
+                        id: 'intermediate-2',
+                        title: 'Problemas y Soluciones',
+                        icon: '🔧',
+                        difficulty: 'Medio',
+                        duration: '8 min',
+                        description: 'Aprende a identificar problemas y soluciones en diferentes contextos.',
+                        audioIndex: [0,1,2]
+                    },
+                ],
+                expert: [
+                    {
+                        id: 'expert-1',
+                        title: 'Situaciones Complejas',
+                        icon: '🧩',
+                        difficulty: 'Difícil',
+                        duration: '15 min',
+                        description: 'Desafía tu comprensión con situaciones complejas y vocabulario avanzado.',
+                        audioIndex: [0,1,2]
+                    },
+                    {
+                        id: 'expert-2',
+                        title: 'Narraciones y Experiencias',
+                        icon: '📚',
+                        difficulty: 'Difícil',
+                        duration: '12 min',
+                        description: 'Practica con narraciones detalladas y experiencias personales.',
+                        audioIndex: [0,1,2]
+                    },
+                ]
+            };
+            
+            // Cargar los ejercicios del nivel seleccionado
+            const exercisesGrid = document.getElementById('exercisesGrid');
+            const levelExercises = exercises[selectedLevel] || [];
+            
+            if (levelExercises.length === 0) {
+                exercisesGrid.innerHTML = `
+                    <div class="no-exercises">
+                        <h3>No hay ejercicios disponibles</h3>
+                        <p>Actualmente no hay ejercicios disponibles para este nivel. Por favor, intenta con otro nivel o vuelve más tarde.</p>
+                        <button class="start-exercise-btn" onclick="goBack()">Volver a la selección de nivel</button>
+                    </div>
+                `;
+            } else {
+                exercisesGrid.innerHTML = levelExercises.map(exercise => `
+                    <div class="exercise-card" onclick="startExercise('${exercise.id}', ${JSON.stringify(exercise.audioIndex)})">
+                        <span class="exercise-icon">${exercise.icon}</span>
+                        <h3 class="exercise-title">${exercise.title}</h3>
+                        <div class="exercise-meta">
+                            <span>Dificultad: ${exercise.difficulty}</span>
+                            <span>Duración: ${exercise.duration}</span>
+                        </div>
+                        <p class="exercise-description">${exercise.description}</p>
+                        <button class="start-exercise-btn">Comenzar Ejercicio</button>
+                    </div>
+                `).join('');
+            }
+        });
+        
+        function goBack() {
+            window.location.href = 'level-selection.html';
+        }
+        
+        function startExercise(exerciseId, audioIndices) {
+            // Extraer la categoría del ID del ejercicio (por ejemplo, 'easy-1' -> categoría es la parte antes del guión)
+            const category = exerciseId.split('-')[0];
+            
+            // Guardar la categoría seleccionada en localStorage
+            localStorage.setItem('selectedCategory', category);
+            
+            // Guardar el ID del ejercicio para identificación específica
+            localStorage.setItem('selectedExerciseId', exerciseId);
+            
+            // Guardar los índices de audio para este ejercicio
+            localStorage.setItem('selectedExerciseAudioIndices', JSON.stringify(audioIndices));
+            
+            // Redirigir a la página de test con los audios específicos
+            window.location.href = 'test-listening.html';
+        }
+    </script>
+</body>
+</html> 

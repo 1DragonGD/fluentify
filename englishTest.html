@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Test</title>
+   <style>
+:root {
+    --primary-color: #2E3192;
+    --secondary-color: #1BFFFF;
+    --accent-color: #D4145A;
+    --background: #0A0A0A;
+    --text-color: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --glass-effect: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Estilos base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
+    background: var(--background);
+    color: var(--text-color);
+    overflow-x: hidden;
+  }
+  
+  /* Header y navegación */
+  header {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+  }
+  
+  .logo {
+    height: 50px;
+    filter: drop-shadow(0 0 10px var(--secondary-color));
+  }
+  
+  nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  
+  nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--secondary-color);
+    transition: width 0.3s ease;
+  }
+  
+  nav a:hover::before {
+    width: 100%;
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 70%;
+    left: 74%;
+    transform: translateX(-50%);
+    background-color: var(--background);
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border: 1px solid var(--glass-effect);
+    border-radius: 0 0 5px 5px;
+    z-index: 1001;
+    margin-top: 10px;
+}
+
+.dropdown::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgba(36, 54, 66, 0.95);
+}
+
+nav ul li:hover .dropdown {
+    display: block;
+}
+
+.dropdown li {
+    margin: 0;
+    width: 100%;
+}
+
+.dropdown li a {
+    color: white;
+    padding: 12px 16px;
+    display: block;
+    font-size: 14px;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown li a:hover {
+    
+    color: white;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 80px); /* Subtract header height */
+  margin-top: 90px; /* Match header height */
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 800px;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.progress-bar {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  height: 15px;
+  margin-bottom: 30px;
+}
+
+.progress {
+  background-color: #1bffff;
+  height: 100%;
+  border-radius: 20px;
+  width: 0;
+  transition: width 0.3s;
+}
+
+.question-container {
+  margin-bottom: 30px;
+}
+
+.question-container h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  margin: 10px 0;
+  font-size: 20px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+button.selected {
+  background-color: #1bffff;
+}
+
+button:disabled {
+  background-color: rgba(255, 255, 255, 0.03);
+  cursor: not-allowed;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-btn {
+  width: 48%;
+  font-size: 20px;
+  padding: 15px;
+}
+
+.selected-option {
+  background-color: #1BFFFF; /* Color de fondo para la opción seleccionada */
+}
+
+ /* Cambiar el color de la barra de desplazamiento */
+ ::-webkit-scrollbar-thumb {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: var(--background);
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Media queries */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 3%;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .levels-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .levels-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                display: none; /* Mobile menu would require JavaScript to implement */
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+   </style>
+</head>
+<body>
+    <header>
+        <img src="./img/Captura_de_pantalla_2024-11-21_160111-removebg-preview.png" alt="" class="logo">
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="./traductor.html" target="_blank">Traductor</a></li>
+                <li><a href="#">Tematicas</a>
+                <ul class="dropdown">
+                    <li><a href="">Grammar</a></li>
+                    <li><a href="">Vocabulary</a></li>
+                    <li><a href="./writing.html">Writing</a></li>
+                    <li><a href="">Reading</a></li>
+               
+                </ul>
+                
+                </li>
+                
+                <li><a href="#">Acerca de nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+  <div class="container">
+    <div class="card">
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+      <div class="question-container">
+        <h2 id="question-text"></h2>
+        <div id="options-container"></div>
+      </div>
+      <div class="navigation">
+        <button id="previous-btn" class="nav-btn" disabled>Previous</button>
+        <button id="next-btn" class="nav-btn">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  const questions = [
+  // Nivel A1 (Básico)
+  { id: 1, question: "What ___ your name?", options: ["are", "is", "am", "be"], correctAnswer: "is", level: "A1" },
+  { id: 2, question: "She ___ TV every evening.", options: ["watch", "watches", "watching", "watched"], correctAnswer: "watches", level: "A1" },
+  { id: 3, question: "Where ___ you from?", options: ["are", "is", "am", "be"], correctAnswer: "are", level: "A1" },
+  { id: 4, question: "They ___ students.", options: ["is", "are", "am", "be"], correctAnswer: "are", level: "A1" },
+  { id: 5, question: "I ___ coffee every morning.", options: ["drink", "drinks", "drinking", "drank"], correctAnswer: "drink", level: "A1" },
+  { id: 6, question: "He ___ English very well.", options: ["speak", "speaks", "speaking", "spoke"], correctAnswer: "speaks", level: "A1" },
+  { id: 7, question: "She ___ a new book.", options: ["buy", "bought", "buying", "buys"], correctAnswer: "buys", level: "A1" },
+  { id: 8, question: "They ___ to the gym every day.", options: ["go", "goes", "going", "went"], correctAnswer: "go", level: "A1" },
+  { id: 9, question: "I ___ happy today.", options: ["is", "am", "are", "be"], correctAnswer: "am", level: "A1" },
+  { id: 10, question: "Where ___ your parents?", options: ["is", "are", "am", "be"], correctAnswer: "are", level: "A1" },
+  
+  // Nivel A2 (Elemental)
+  { id: 11, question: "We ___ to the park yesterday.", options: ["go", "goes", "going", "went"], correctAnswer: "went", level: "A2" },
+  { id: 12, question: "Have you ___ been to Paris?", options: ["ever", "never", "already", "yet"], correctAnswer: "ever", level: "A2" },
+  { id: 13, question: "She ___ her homework when I called.", options: ["do", "does", "did", "was doing"], correctAnswer: "was doing", level: "A2" },
+  { id: 14, question: "If it ___ tomorrow, I'll stay home.", options: ["rains", "rain", "raining", "rained"], correctAnswer: "rains", level: "A2" },
+  { id: 15, question: "They ___ not like pizza.", options: ["do", "does", "did", "are"], correctAnswer: "do", level: "A2" },
+  { id: 16, question: "She ___ always comes to work on time.", options: ["always", "never", "usually", "sometimes"], correctAnswer: "always", level: "A2" },
+  { id: 17, question: "He ___ to school by bus.", options: ["go", "goes", "going", "went"], correctAnswer: "goes", level: "A2" },
+  { id: 18, question: "We ___ playing football in the park.", options: ["are", "is", "am", "were"], correctAnswer: "are", level: "A2" },
+  { id: 19, question: "I ___ a sandwich for lunch yesterday.", options: ["eat", "ate", "eating", "eats"], correctAnswer: "ate", level: "A2" },
+  { id: 20, question: "She ___ to her friend every day.", options: ["talk", "talks", "talking", "talked"], correctAnswer: "talks", level: "A2" },
+
+  // Nivel B1 (Intermedio)
+  { id: 21, question: "I ___ my homework when she called.", options: ["do", "was doing", "did", "have done"], correctAnswer: "was doing", level: "B1" },
+  { id: 22, question: "He ___ to the gym every day.", options: ["goes", "is going", "going", "gone"], correctAnswer: "goes", level: "B1" },
+  { id: 23, question: "If I ___ a car, I would drive to work.", options: ["have", "had", "would have", "will"], correctAnswer: "had", level: "B1" },
+  { id: 24, question: "She ___ to the cinema last night.", options: ["go", "goes", "going", "went"], correctAnswer: "went", level: "B1" },
+  { id: 25, question: "They ___ lived in this town for 5 years.", options: ["have", "had", "will have", "have had"], correctAnswer: "have", level: "B1" },
+  { id: 26, question: "I ___ never been to New York.", options: ["have", "has", "had", "will have"], correctAnswer: "have", level: "B1" },
+  { id: 27, question: "She said that she ___ go to the party.", options: ["can", "could", "will", "would"], correctAnswer: "could", level: "B1" },
+  { id: 28, question: "If we ___ earlier, we would have caught the train.", options: ["leave", "left", "had left", "will leave"], correctAnswer: "had left", level: "B1" },
+  { id: 29, question: "We ___ going to the beach if it doesn't rain.", options: ["are", "is", "am", "will"], correctAnswer: "are", level: "B1" },
+  { id: 30, question: "I wish I ___ a better car.", options: ["have", "had", "have had", "would have"], correctAnswer: "had", level: "B1" },
+
+  // Nivel B1 (Condicional y más avanzado)
+  { id: 31, question: "She ___ a lot of books if she had more time.", options: ["reads", "will read", "would read", "reading"], correctAnswer: "would read", level: "B1" },
+  { id: 32, question: "If I ___ you, I would take the job.", options: ["am", "was", "were", "will"], correctAnswer: "were", level: "B1" },
+  { id: 33, question: "They ___ just finished their homework when I called.", options: ["has", "have", "had", "will have"], correctAnswer: "had", level: "B1" },
+  { id: 34, question: "If she ___ me, I would have helped her.", options: ["ask", "asked", "asks", "asking"], correctAnswer: "asked", level: "B1" },
+  { id: 35, question: "He ___ to the party if he wasn't so busy.", options: ["would go", "would have gone", "goes", "will go"], correctAnswer: "would go", level: "B1" },
+  { id: 36, question: "She ___ me if she had known I was there.", options: ["helped", "would help", "helps", "would have helped"], correctAnswer: "would have helped", level: "B1" },
+  { id: 37, question: "By the time you arrive, we ___ finished the project.", options: ["have", "will", "had", "will have"], correctAnswer: "will have", level: "B1" },
+  { id: 38, question: "If I ___ enough money, I would have bought a new phone.", options: ["have", "had", "would have", "will have"], correctAnswer: "had", level: "B1" },
+  { id: 39, question: "He said that he ___ go on vacation next year.", options: ["is", "will", "was", "would"], correctAnswer: "would", level: "B1" },
+  { id: 40, question: "I ___ tell you if I knew the answer.", options: ["will", "would", "could", "can"], correctAnswer: "would", level: "B1" },
+
+  // Nivel A2 (Más vocabulario)
+  { id: 41, question: "We ___ a lot of fun last weekend.", options: ["have", "had", "has", "will have"], correctAnswer: "had", level: "A2" },
+  { id: 42, question: "She ___ for a walk in the park.", options: ["go", "went", "goes", "going"], correctAnswer: "went", level: "A2" },
+  { id: 43, question: "I ___ my sister in the morning.", options: ["see", "sees", "seeing", "saw"], correctAnswer: "see", level: "A2" },
+  { id: 44, question: "My brother ___ play the guitar very well.", options: ["don't", "doesn't", "isn't", "aren't"], correctAnswer: "doesn't", level: "A2" },
+  { id: 45, question: "We ___ to the cinema every month.", options: ["go", "goes", "going", "went"], correctAnswer: "go", level: "A2" },
+  { id: 46, question: "They ___ at home now.", options: ["are", "is", "were", "am"], correctAnswer: "are", level: "A2" },
+  { id: 47, question: "It ___ very cold in winter.", options: ["is", "was", "were", "be"], correctAnswer: "is", level: "A2" },
+  { id: 48, question: "She ___ a lot of clothes in her wardrobe.", options: ["has", "have", "is", "are"], correctAnswer: "has", level: "A2" },
+  { id: 49, question: "They ___ to the park yesterday.", options: ["go", "went", "are going", "goes"], correctAnswer: "went", level: "A2" },
+  { id: 50, question: "I ___ my homework every day.", options: ["do", "does", "doing", "did"], correctAnswer: "do", level: "A2" }
+];
+
+
+let currentQuestion = 0;
+let answers = {};
+
+function displayQuestion() {
+  const question = questions[currentQuestion];
+  document.getElementById("question-text").innerText = question.question;
+
+  const optionsContainer = document.getElementById("options-container");
+  optionsContainer.innerHTML = "";
+  question.options.forEach((option) => {
+    const button = document.createElement("button");
+    button.innerText = option;
+    button.onclick = () => handleAnswer(option);
+    optionsContainer.appendChild(button);
+  });
+
+  updateProgress();
+  updateNavigationButtons();
+}
+
+function handleAnswer(selectedAnswer) {
+  answers[currentQuestion] = selectedAnswer;
+
+  // Resaltar la opción seleccionada
+  const optionsContainer = document.getElementById("options-container");
+  const buttons = optionsContainer.getElementsByTagName("button");
+  
+  for (let button of buttons) {
+    button.classList.remove("selected-option"); // Eliminar la clase de selección de todas las opciones
+  }
+  
+  // Agregar la clase a la opción seleccionada
+  const selectedButton = Array.from(buttons).find(button => button.innerText === selectedAnswer);
+  if (selectedButton) {
+    selectedButton.classList.add("selected-option");
+  }
+}
+
+function handleNext() {
+  if (currentQuestion < questions.length - 1) {
+    currentQuestion++;
+    displayQuestion();
+  } else {
+    calculateLevel();
+  }
+}
+
+function handlePrevious() {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    displayQuestion();
+  }
+}
+
+function updateProgress() {
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  document.getElementById("progress").style.width = `${progress}%`;
+}
+
+function updateNavigationButtons() {
+  document.getElementById("previous-btn").disabled = currentQuestion === 0;
+  document.getElementById("next-btn").innerText = currentQuestion === questions.length - 1 ? "Finish" : "Next";
+}
+
+function calculateLevel() {
+  let correctAnswers = 0;
+  questions.forEach((question, index) => {
+    if (answers[index] === question.correctAnswer) {
+      correctAnswers++;
+    }
+  });
+
+  const percentage = (correctAnswers / questions.length) * 100;
+
+  if (percentage >= 80) {
+    alert("Your level is B1");
+  } else if (percentage >= 60) {
+    alert("Your level is A2");
+  } else {
+    alert("Your level is A1");
+  }
+}
+
+// Initialize the quiz
+document.getElementById("next-btn").addEventListener("click", handleNext);
+document.getElementById("previous-btn").addEventListener("click", handlePrevious);
+
+displayQuestion();
+
+  </script>
+  <script src="./script.js">
+
+  </script>
+  <script src="./main.js"></script>
+</body>
+</html>

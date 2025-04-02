@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Level - FLUENTYFY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .level-selection-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+
+        .level-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .level-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, var(--primary-color), transparent);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .level-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--secondary-color);
+        }
+
+        .level-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            color: var(--primary-color);
+        }
+
+        .level-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .level-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .level-examples {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .level-examples li {
+            margin: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .start-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./img/Captura_de_pantalla_2024-11-21_160111-removebg-preview.png" alt="" class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="traductor.html" target="_blank">Traductor</a></li>
+                <li><a href="#">Tematicas</a>
+                    <ul class="dropdown">
+                        <li><a href="">Grammar</a></li>
+                        <li><a href="">Vocabulary</a></li>
+                        <li><a href="">Writing</a></li>
+                        <li><a href="">Reading</a></li>
+                        <li><a href="listening.html">Listening</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Acerca de nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="level-selection-container">
+            <h1 class="page-title">Selecciona tu nivel de <span class="highlight">Listening</span></h1>
+            <p class="page-description">
+                Elige el nivel que mejor se adapte a tus habilidades actuales. Puedes empezar con un nivel más bajo y avanzar gradualmente, o desafiarte con un nivel más alto.
+            </p>
+
+            <div class="level-cards">
+                <div class="level-card" onclick="selectLevel('easy')">
+                    <span class="level-icon">🌱</span>
+                    <h2 class="level-title">Principiante</h2>
+                    <p class="level-description">
+                        Ideal para quienes están comenzando a aprender inglés. Ejercicios con vocabulario básico y estructuras simples.
+                    </p>
+                    <div class="level-examples">
+                        <h3>Ejemplos:</h3>
+                        <ul>
+                            <li>Saludos y presentaciones</li>
+                            <li>Números y horas</li>
+                        </ul>
+                    </div>
+                    <button class="start-button">Comenzar</button>
+                </div>
+
+                <div class="level-card" onclick="selectLevel('intermediate')">
+                    <span class="level-icon">🚀</span>
+                    <h2 class="level-title">Intermedio</h2>
+                    <p class="level-description">
+                        Para estudiantes con conocimientos básicos que quieren mejorar su comprensión de conversaciones cotidianas.
+                    </p>
+                    <div class="level-examples">
+                        <h3>Ejemplos:</h3>
+                        <ul>
+                            <li>Conversaciones diarias</li>
+                            <li>Clima y planes</li>
+                        </ul>
+                    </div>
+                    <button class="start-button">Comenzar</button>
+                </div>
+
+                <div class="level-card" onclick="selectLevel('expert')">
+                    <span class="level-icon">🏆</span>
+                    <h2 class="level-title">Avanzado</h2>
+                    <p class="level-description">
+                        Desafía tus habilidades con contenido más complejo y situaciones reales que requieren mayor comprensión.
+                    </p>
+                    <div class="level-examples">
+                        <h3>Ejemplos:</h3>
+                        <ul>
+                            <li>Entrevistas de trabajo</li>
+                            <li>Noticias y reportajes</li>
+                        </ul>
+                    </div>
+                    <button class="start-button">Comenzar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Jardines del Caqueta. Calle Principal, Ciudad del Caqueta</p>
+        <div class="social-media">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        function selectLevel(level) {
+            localStorage.setItem('selectedLevel', level);
+            window.location.href = 'level-exercises.html';
+        }
+    </script>
+</body>
+</html> 

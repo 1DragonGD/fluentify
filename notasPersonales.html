@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Notes - A2 Exercises</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E3192;
+            --secondary-color: #1BFFFF;
+            --accent-color: #D4145A;
+            --background: #0A0A0A;
+            --text-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-color);
+            padding-top: 80px;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            top: 0;
+        }
+
+        .logo {
+            height: 50px;
+            filter: drop-shadow(0 0 10px var(--secondary-color));
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        .exercise-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+        }
+
+        .exercise {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .exercise h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .context {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(46, 49, 146, 0.2);
+            border-radius: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--secondary-color);
+            border-radius: 10px;
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .check-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 0.8rem 1.5rem;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .check-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+        }
+
+        .feedback.incorrect {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff0000;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem 0;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./img/Captura_de_pantalla_2024-11-21_160111-removebg-preview.png" alt="Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./traductor.html">Translator</a></li>
+                <li><a href="./writing.html">Writing</a></li>
+                <li><a href="#">About us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1 class="page-title">Personal Notes - A2 Exercises</h1>
+
+    <div class="exercise-container">
+        <div class="exercise">
+            <h3>Exercise 1: Reminder</h3>
+            <div class="context">Write a reminder for yourself to attend a meeting at 3 PM tomorrow.</div>
+            <textarea placeholder="Write your reminder here..."></textarea>
+            <button class="check-button" onclick="checkExercise(1)">Check</button>
+            <div id="feedback-1" class="feedback"></div>
+        </div>
+
+        <div class="exercise">
+            <h3>Exercise 2: Thank You Note</h3>
+            <div class="context">Write a short thank-you note to your friend for helping you with your homework.</div>
+            <textarea placeholder="Write your thank-you note here..."></textarea>
+            <button class="check-button" onclick="checkExercise(2)">Check</button>
+            <div id="feedback-2" class="feedback"></div>
+        </div>
+
+        <div class="exercise">
+            <h3>Exercise 3: Shopping List</h3>
+            <div class="context">Write a quick shopping list for the items you need to buy: milk, bread, and apples.</div>
+            <textarea placeholder="Write your shopping list here..."></textarea>
+            <button class="check-button" onclick="checkExercise(3)">Check</button>
+            <div id="feedback-3" class="feedback"></div>
+        </div>
+
+        <div class="exercise">
+            <h3>Exercise 4: Apology Note</h3>
+            <div class="context">Write an apology note to your teacher for missing class yesterday.</div>
+            <textarea placeholder="Write your apology note here..."></textarea>
+            <button class="check-button" onclick="checkExercise(4)">Check</button>
+            <div id="feedback-4" class="feedback"></div>
+        </div>
+
+        <div class="exercise">
+            <h3>Exercise 5: Note to a Friend</h3>
+            <div class="context">Write a short note to a friend asking them to meet you at the park at 5 PM.</div>
+            <textarea placeholder="Write your note here..."></textarea>
+            <button class="check-button" onclick="checkExercise(5)">Check</button>
+            <div id="feedback-5" class="feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        function checkExercise(number) {
+            const textarea = document.querySelectorAll('textarea')[number-1];
+            const feedback = document.getElementById(`feedback-${number}`);
+            const text = textarea.value.trim().toLowerCase();
+            
+            let isCorrect = false;
+            let feedbackMessage = '';
+
+            switch(number) {
+                case 1:
+                    isCorrect = text.includes('meeting') && text.includes('3 pm');
+                    feedbackMessage = isCorrect ? 
+                        'Great job! You included the meeting time.' : 
+                        'Make sure to include the meeting and the time (3 PM).';
+                    break;
+                case 2:
+                    isCorrect = text.includes('thank you') && text.includes('help');
+                    feedbackMessage = isCorrect ? 
+                        'Well done! Your thank-you note is polite and clear.' : 
+                        'Don’t forget to thank your friend and mention their help.';
+                    break;
+                case 3:
+                    isCorrect = text.includes('milk') && text.includes('bread') && text.includes('apples');
+                    feedbackMessage = isCorrect ? 
+                        'Perfect! Your shopping list includes everything.' : 
+                        'Ensure your list includes milk, bread, and apples.';
+                    break;
+                case 4:
+                    isCorrect = text.includes('sorry') && text.includes('missed class');
+                    feedbackMessage = isCorrect ? 
+                        'Good job! Your apology is clear.' : 
+                        'Make sure to include an apology and mention the missed class.';
+                    break;
+                case 5:
+                    isCorrect = text.includes('meet') && text.includes('park') && text.includes('5 pm');
+                    feedbackMessage = isCorrect ? 
+                        'Excellent! Your note includes all the necessary details.' : 
+                        'Include the time (5 PM) and location (park) in your note.';
+                    break;
+            }
+
+            feedback.textContent = feedbackMessage;
+            feedback.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedback.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

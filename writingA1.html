@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing A1 - Ejercicios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E3192;
+            --secondary-color: #1BFFFF;
+            --accent-color: #D4145A;
+            --background: #0A0A0A;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --glass-effect: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            top: 0;
+        }
+
+        .logo {
+            height: 50px;
+            filter: drop-shadow(0 0 10px var(--secondary-color));
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        .topics-container {
+            padding: 8rem 5% 5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .topic-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            padding: 2rem;
+            color: var(--text-color);
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(46, 49, 146, 0.5), 
+                rgba(27, 255, 255, 0.5));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-15px) scale(1.02);
+        }
+
+        .topic-card:hover::before {
+            opacity: 1;
+        }
+
+        .topic-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .topic-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--secondary-color), #fff);
+            -webkit-background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .topic-card p {
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .start-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 1rem 2rem;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+        }
+
+        footer {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 2rem 5%;
+    text-align: center;
+  }
+  
+  .social-media {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .social-media img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+  }
+  
+  .social-media img:hover {
+    transform: scale(1.2);
+  }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem 0;
+            padding-top: 5rem;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* Estilos para la barra de desplazamiento */
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: var(--background);
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./img/Captura_de_pantalla_2024-11-21_160111-removebg-preview.png" alt="Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="traductor.html">Traductor</a></li>
+                <li><a href="#">Temáticas</a></li>
+                <li><a href="#">Acerca de nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1 class="page-title">Writing A1 - Ejercicios de Escritura Básica</h1>
+
+    <div class="topics-container">
+        <div class="topic-card">
+            <div class="topic-icon">📝</div>
+            <h2>Oraciones Simples</h2>
+            <p>Aprende a construir oraciones básicas en presente simple, usando sujeto + verbo + complemento. Práctica con ejercicios interactivos.</p>
+            <a href="./escrituraBasica.html" class="start-button">Comenzar Ejercicios</a>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-icon">👤</div>
+            <h2>Descripción Personal</h2>
+            <p>Practica cómo describir personas, incluyendo apariencia física y personalidad básica. Vocabulario esencial para presentaciones.</p>
+            <a href="./decripcion.html" class="start-button">Comenzar Ejercicios</a>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-icon">✉️</div>
+            <h2>Mensajes Cortos</h2>
+            <p>Aprende a escribir notas breves, mensajes de texto y recordatorios simples en inglés para comunicación diaria.</p>
+            <a href="./mensajesCortos.html" class="start-button">Comenzar Ejercicios</a>
+        </div>
+    </div>
+    <footer>
+        © 2025 FLUENTYFY. Todos los derechos reservados.
+    </footer>
+</body>
+</html>

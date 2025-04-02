@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Essays - Writing Practice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E3192;
+            --secondary-color: #1BFFFF;
+            --accent-color: #D4145A;
+            --background: #0A0A0A;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --glass-effect: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            top: 0;
+        }
+
+        .logo {
+            height: 50px;
+            filter: drop-shadow(0 0 10px var(--secondary-color));
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem 0;
+            padding-top: 5rem;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .exercise-container {
+            padding: 8rem 5% 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .exercise {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .exercise h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .exercise p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            color: var(--text-color);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem 2rem;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./img/Captura_de_pantalla_2024-11-21_160111-removebg-preview.png" alt="Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="translator.html">Translator</a></li>
+                <li><a href="#">Topics</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1 class="page-title">Basic Essay Writing Practice</h1>
+
+    <div class="exercise-container">
+        <!-- Exercise 1 -->
+        <div class="exercise">
+            <h3>1. Writing an Introduction</h3>
+            <p><strong>Topic:</strong> Write an introduction paragraph about your favorite hobby.</p>
+            <p><strong>Requirements:</strong></p>
+            <ul>
+                <li>Include a hook sentence</li>
+                <li>Provide background information</li>
+                <li>End with a thesis statement</li>
+            </ul>
+            <textarea id="exercise1" placeholder="Write your introduction paragraph here (3-5 sentences)"></textarea>
+            <button class="submit-button" onclick="checkEssay(1)">Get Feedback</button>
+            <div id="feedback1" class="feedback"></div>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="exercise">
+            <h3>2. Supporting Paragraph Development</h3>
+            <p><strong>Topic:</strong> Write a paragraph explaining the advantages of learning a new language.</p>
+            <p><strong>Requirements:</strong></p>
+            <ul>
+                <li>Start with a clear topic sentence</li>
+                <li>Include at least two specific examples</li>
+                <li>Use transition words</li>
+            </ul>
+            <textarea id="exercise2" placeholder="Write your supporting paragraph here (4-6 sentences)"></textarea>
+            <button class="submit-button" onclick="checkEssay(2)">Get Feedback</button>
+            <div id="feedback2" class="feedback"></div>
+        </div>
+
+        <!-- Exercise 3 -->
+        <div class="exercise">
+            <h3>3. Opinion Expression</h3>
+            <p><strong>Topic:</strong> Write a paragraph about whether social media has a positive or negative impact on society.</p>
+            <p><strong>Requirements:</strong></p>
+            <ul>
+                <li>State your opinion clearly</li>
+                <li>Provide reasons for your opinion</li>
+                <li>Use appropriate opinion expressions (I believe, In my opinion, etc.)</li>
+            </ul>
+            <textarea id="exercise3" placeholder="Write your opinion paragraph here (4-6 sentences)"></textarea>
+            <button class="submit-button" onclick="checkEssay(3)">Get Feedback</button>
+            <div id="feedback3" class="feedback"></div>
+        </div>
+
+        <!-- Exercise 4 -->
+        <div class="exercise">
+            <h3>4. Conclusion Writing</h3>
+            <p><strong>Topic:</strong> Write a conclusion paragraph for an essay about the importance of exercise.</p>
+            <p><strong>Requirements:</strong></p>
+            <ul>
+                <li>Restate the main idea</li>
+                <li>Summarize key points</li>
+                <li>End with a final thought or call to action</li>
+            </ul>
+            <textarea id="exercise4" placeholder="Write your conclusion paragraph here (3-4 sentences)"></textarea>
+            <button class="submit-button" onclick="checkEssay(4)">Get Feedback</button>
+            <div id="feedback4" class="feedback"></div>
+        </div>
+
+        <!-- Exercise 5 -->
+        <div class="exercise">
+            <h3>5. Complete Mini Essay</h3>
+            <p><strong>Topic:</strong> Write a short essay about your dream job.</p>
+            <p><strong>Requirements:</strong></p>
+            <ul>
+                <li>Include an introduction, body paragraph, and conclusion</li>
+                <li>Use appropriate transitions between paragraphs</li>
+                <li>Include specific examples and details</li>
+            </ul>
+            <textarea id="exercise5" placeholder="Write your complete mini essay here (minimum 3 paragraphs)"></textarea>
+            <button class="submit-button" onclick="checkEssay(5)">Get Feedback</button>
+            <div id="feedback5" class="feedback"></div>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 Jardines del Caqueta. Calle Principal, Ciudad del Caqueta
+    </footer>
+
+    <script>
+        function checkEssay(exerciseNumber) {
+            const essay = document.getElementById(`exercise${exerciseNumber}`).value.trim();
+            const feedback = document.getElementById(`feedback${exerciseNumber}`);
+            
+            if (essay.length < 50) {
+                feedback.innerHTML = "Your response seems too short. Try to write more and include all required elements.";
+                feedback.style.backgroundColor = "rgba(255, 0, 0, 0.1)";
+                return;
+            }
+
+            // Basic checks for each exercise
+            let feedbackText = "Good effort! Here's some feedback:<br><br>";
+            
+            switch(exerciseNumber) {
+                case 1:
+                    if (!essay.includes(".")) {
+                        feedbackText += "- Remember to write complete sentences<br>";
+                    }
+                    if (essay.split(".").length < 3) {
+                        feedbackText += "- Try to write at least 3 sentences for your introduction<br>";
+                    }
+                    break;
+                case 2:
+                    if (!essay.toLowerCase().includes("first") && !essay.toLowerCase().includes("second") && !essay.toLowerCase().includes("furthermore") && !essay.toLowerCase().includes("moreover")) {
+                        feedbackText += "- Consider using transition words to connect your ideas<br>";
+                    }
+                    break;
+                case 3:
+                    if (!essay.toLowerCase().includes("opinion") && !essay.toLowerCase().includes("believe") && !essay.toLowerCase().includes("think")) {
+                        feedbackText += "- Try using opinion expressions to state your position clearly<br>";
+                    }
+                    break;
+                case 4:
+                    if (!essay.toLowerCase().includes("conclusion") && !essay.toLowerCase().includes("finally") && !essay.toLowerCase().includes("in summary")) {
+                        feedbackText += "- Consider using conclusion signals to wrap up your ideas<br>";
+                    }
+                    break;
+                case 5:
+                    if (essay.split("\n\n").length < 3) {
+                        feedbackText += "- Remember to organize your essay into at least 3 paragraphs<br>";
+                    }
+                    break;
+            }
+
+            feedbackText += "<br>Keep practicing and improving your writing skills!";
+            feedback.innerHTML = feedbackText;
+            feedback.style.backgroundColor = "rgba(27, 255, 255, 0.1)";
+        }
+    </script>
+</body>
+</html>

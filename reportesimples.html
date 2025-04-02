@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive B1 English Report Exercise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E3192;
+            --secondary-color: #1BFFFF;
+            --accent-color: #D4145A;
+            --background: #0A0A0A;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --glass-effect: rgba(255, 255, 255, 0.1);
+            --success-color: #4ade80;
+            --warning-color: #fbbf24;
+            --error-color: #f87171;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: var(--background);
+            color: var(--text-color);
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .instructions-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .report-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .section-title {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .highlight {
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+        
+        .instruction-box {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        .instruction-box h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .instruction-box p {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+        
+        .example {
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
+        .report-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .report-section h2 {
+            margin-bottom: 0.75rem;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .status-indicator {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        
+        .textarea-container {
+            position: relative;
+        }
+        
+        textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 0.75rem;
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            resize: vertical;
+            min-height: 80px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+        
+        .feedback {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            min-height: 40px;
+            padding: 0.5rem;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .feedback.visible {
+            display: block;
+        }
+        
+        .feedback.success {
+            background: rgba(74, 222, 128, 0.2);
+            border: 1px solid var(--success-color);
+        }
+        
+        .feedback.warning {
+            background: rgba(251, 191, 36, 0.2);
+            border: 1px solid var(--warning-color);
+        }
+        
+        .feedback.error {
+            background: rgba(248, 113, 113, 0.2);
+            border: 1px solid var(--error-color);
+        }
+        
+        .word-count {
+            position: absolute;
+            bottom: 0.5rem;
+            right: 0.5rem;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 0.75rem 1.5rem;
+            color: white;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+        }
+        
+        .report-preview {
+            display: none;
+            margin-top: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .report-preview h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: var(--background);
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Software Development Report Writing Exercise</h1>
+    
+    <div class="container">
+        <div class="instructions-container">
+            <h2 class="section-title">Writing Instructions</h2>
+            <p>You are a software developer for a US company. Write a short report in <span class="highlight">B1 level English</span> about your current project.</p>
+            
+            <div class="instruction-box">
+                <h3>Project Summary</h3>
+                <p>Write 1-2 sentences describing what your project is about and its main purpose.</p>
+                <p>Use simple present tense and include what the software does.</p>
+                <div class="example">Example: "This report describes the progress of our Customer Portal project. The software allows clients to view their account information and submit support tickets."</div>
+            </div>
+            
+            <div class="instruction-box">
+                <h3>Progress Update</h3>
+                <p>Write 2-3 sentences about what your team has accomplished so far.</p>
+                <p>Use present perfect tense (have/has + past participle).</p>
+                <div class="example">Example: "We have completed the login page and user profile sections. Our team has fixed several bugs in the database connection. We have also improved the loading speed of the application."</div>
+            </div>
+            
+            <div class="instruction-box">
+                <h3>Key Issues</h3>
+                <p>Describe 1-2 problems or challenges your team is facing.</p>
+                <p>Use present simple and present continuous tenses.</p>
+                <div class="example">Example: "The notification system does not work correctly on mobile devices. We are also experiencing issues with the payment integration."</div>
+            </div>
+            
+            <div class="instruction-box">
+                <h3>Action Plan</h3>
+                <p>Describe what your team will do next to solve problems and continue development.</p>
+                <p>Use future forms (will/going to).</p>
+                <div class="example">Example: "We will fix the mobile notification issue by the end of the week. Our team is going to meet with the payment provider to solve the integration problems."</div>
+            </div>
+            
+            <div class="instruction-box">
+                <h3>B1 Level English Tips</h3>
+                <ul style="padding-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Use simple and compound sentences, not too complex</li>
+                    <li>Use common linking words (and, but, because, so, then)</li>
+                    <li>Include some technical vocabulary, but explain any complex terms</li>
+                    <li>Keep paragraphs short (2-3 sentences)</li>
+                    <li>Check that your verb tenses are consistent</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="report-container">
+            <h2 class="section-title">Your Report</h2>
+            
+            <div class="report-section">
+                <h2>
+                    Project Summary
+                    <span class="status-indicator" id="summary-status"></span>
+                </h2>
+                <div class="textarea-container">
+                    <textarea id="summary" rows="3" placeholder="Write your project summary here..."></textarea>
+                    <div class="word-count" id="summary-word-count">0 words</div>
+                </div>
+                <div class="feedback" id="summary-feedback"></div>
+            </div>
+            
+            <div class="report-section">
+                <h2>
+                    Progress Update
+                    <span class="status-indicator" id="progress-status"></span>
+                </h2>
+                <div class="textarea-container">
+                    <textarea id="progress" rows="4" placeholder="Write your progress update here..."></textarea>
+                    <div class="word-count" id="progress-word-count">0 words</div>
+                </div>
+                <div class="feedback" id="progress-feedback"></div>
+            </div>
+            
+            <div class="report-section">
+                <h2>
+                    Key Issues
+                    <span class="status-indicator" id="issues-status"></span>
+                </h2>
+                <div class="textarea-container">
+                    <textarea id="issues" rows="3" placeholder="Write about your key issues here..."></textarea>
+                    <div class="word-count" id="issues-word-count">0 words</div>
+                </div>
+                <div class="feedback" id="issues-feedback"></div>
+            </div>
+            
+            <div class="report-section">
+                <h2>
+                    Action Plan
+                    <span class="status-indicator" id="plan-status"></span>
+                </h2>
+                <div class="textarea-container">
+                    <textarea id="plan" rows="3" placeholder="Write your action plan here..."></textarea>
+                    <div class="word-count" id="plan-word-count">0 words</div>
+                </div>
+                <div class="feedback" id="plan-feedback"></div>
+            </div>
+            
+            <button class="submit-btn" id="submit-report">Generate Final Report</button>
+        </div>
+    </div>
+    
+    <div class="report-preview" id="report-preview">
+        <h2>Your Completed Report</h2>
+        <div id="final-report">
+            <!-- Final report will be inserted here -->
+        </div>
+    </div>
+    
+    <footer>
+        <p>B1 English Software Development Report Exercise | Created for Software Development Students</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const textareas = document.querySelectorAll('textarea');
+            const submitBtn = document.getElementById('submit-report');
+            const reportPreview = document.getElementById('report-preview');
+            const finalReport = document.getElementById('final-report');
+            
+            // Common B1 level words for tech reports
+            const b1TechVocab = [
+                'software', 'project', 'application', 'develop', 'feature', 'bug', 'fix', 'issue',
+                'implement', 'user', 'interface', 'database', 'system', 'test', 'update', 'version',
+                'function', 'code', 'problem', 'solution', 'login', 'password', 'email', 'website',
+                'mobile', 'desktop', 'server', 'client', 'browser', 'data', 'security', 'team',
+                'deadline', 'schedule', 'report', 'meeting', 'progress', 'delay', 'complete', 'start',
+                'finish', 'improve', 'create', 'design', 'build', 'plan', 'check', 'work'
+            ];
+            
+            // Word count update for all textareas
+            textareas.forEach(textarea => {
+                textarea.addEventListener('input', function() {
+                    const id = this.id;
+                    const words = this.value.trim().split(/\s+/).filter(Boolean).length;
+                    document.getElementById(`${id}-word-count`).textContent = `${words} words`;
+                    
+                    // Validate as user types
+                    validateSection(id);
+                });
+            });
+            
+            // Submit report
+            submitBtn.addEventListener('click', function() {
+                const allValid = validateAllSections();
+                
+                if (allValid) {
+                    generateFinalReport();
+                    reportPreview.style.display = 'block';
+                    reportPreview.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert('Please fix the issues in your report before generating the final version.');
+                }
+            });
+            
+            // Validation functions
+            function validateSection(id) {
+                const text = document.getElementById(id).value.trim();
+                const words = text.split(/\s+/).filter(Boolean);
+                const wordCount = words.length;
+                const statusIndicator = document.getElementById(`${id}-status`);
+                const feedback = document.getElementById(`${id}-feedback`);
+                
+                feedback.className = 'feedback';
+                
+                // Basic validation rules by section
+                switch(id) {
+                    case 'summary':
+                        if (wordCount < 10) {
+                            setStatus(statusIndicator, feedback, 'warning', 'Your summary is too short. Try to write 1-2 complete sentences (10-25 words).');
+                            return false;
+                        } else if (wordCount > 40) {
+                            setStatus(statusIndicator, feedback, 'warning', 'Your summary is a bit long. Try to be more concise for B1 level.');
+                            return true;
+                        } else if (!containsTechVocab(words)) {
+                            setStatus(statusIndicator, feedback, 'warning', 'Try to include some technical terms about your software project.');
+                            return false;
+                        } else {
+                            setStatus(statusIndicator, feedback, 'success', 'Good job! Your project summary is clear and concise.');
+                            return true;
+                        }
+                    
+                    case 'progress':
+                        if (wordCount < 15) {
+                            setStatus(statusIndicator, feedback, 'warning', 'Your progress section is too short. Try to write 2-3 complete sentences.');
+                            return false;
+                        } else if (!text.includes('have') && !text.includes('has')) {
+                            setStatus(statusIndicator, feedback, 'warning', 'Try using present perfect tense (have/has + past participle) to describe completed work.');
+                            return false;
+                        } else if (!containsTechVocab(words)) {
+                            setStatus(statusIndicator, feedback, 'warning', 'Include some technical terms about what you have completed.');
+                            return false;
+                        } else {
+                            setStatus(statusIndicator, feedback, 'success', 'Well done! Your progress update shows what your team has accomplished.');
+                            return true;
+                        }
+                    
+                    case 'issues':
+                        if (wordCount < 10) {
+                            setStatus(statusIndicator, feedback, 'warning', 'Your issues section is too short. Try to describe at least one problem.');
+                            return false;
+                        } else if (!containsTechVocab(words)) {
+                            setStatus(statusIndicator, feedback, 'warning', 'Try to include technical terms to describe the issues.');
+                            return false;
+                        } else {
+                            setStatus(statusIndicator, feedback, 'success', 'Good! You have clearly described the key issues.');
+                            return true;
+                        }
+                    
+                    case 'plan':
+                        if (wordCount < 10) {
+                            setStatus(statusIndicator, feedback, 'warning', 'Your action plan is too short. Describe what will be done next.');
+                            return false;
+                        } else if (!text.includes('will') && !text.includes('going to')) {
+                            setStatus(statusIndicator, feedback, 'warning', 'Use future forms (will/going to) to describe planned actions.');
+                            return false;
+                        } else if (!containsTechVocab(words)) {
+                            setStatus(statusIndicator, feedback, 'warning', 'Include some technical terms in your action plan.');
+                            return false;
+                        } else {
+                            setStatus(statusIndicator, feedback, 'success', 'Excellent! Your action plan clearly states what will be done next.');
+                            return true;
+                        }
+                }
+            }
+            
+            function validateAllSections() {
+                const summaryValid = validateSection('summary');
+                const progressValid = validateSection('progress');
+                const issuesValid = validateSection('issues');
+                const planValid = validateSection('plan');
+                
+                return summaryValid && progressValid && issuesValid && planValid;
+            }
+            
+            function containsTechVocab(words) {
+                const lowercaseWords = words.map(w => w.toLowerCase());
+                return b1TechVocab.some(term => lowercaseWords.includes(term));
+            }
+            
+            function setStatus(indicator, feedback, status, message) {
+                // Clear previous status
+                indicator.style.backgroundColor = '';
+                
+                // Set new status
+                if (status === 'success') {
+                    indicator.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--success-color').trim() || '#4ade80';
+                } else if (status === 'warning') {
+                    indicator.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--warning-color').trim() || '#fbbf24';
+                } else if (status === 'error') {
+                    indicator.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--error-color').trim() || '#f87171';
+                }
+                
+                // Set feedback message
+                feedback.textContent = message;
+                feedback.className = `feedback ${status} visible`;
+            }
+            
+            function generateFinalReport() {
+                const summary = document.getElementById('summary').value;
+                const progress = document.getElementById('progress').value;
+                const issues = document.getElementById('issues').value;
+                const plan = document.getElementById('plan').value;
+                
+                const currentDate = new Date().toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                const reportHTML = `
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 10px;">
+                        <h1 style="text-align: center; font-size: 1.8rem; margin-bottom: 1.5rem;">Software Development Report</h1>
+                        <p style="text-align: right; margin-bottom: 2rem; font-size: 0.9rem;">Date: ${currentDate}</p>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h2 style="color: var(--secondary-color); margin-bottom: 0.75rem;">Project Summary</h2>
+                            <p>${summary}</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h2 style="color: var(--secondary-color); margin-bottom: 0.75rem;">Progress Update</h2>
+                            <p>${progress}</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h2 style="color: var(--secondary-color); margin-bottom: 0.75rem;">Key Issues</h2>
+                            <p>${issues}</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h2 style="color: var(--secondary-color); margin-bottom: 0.75rem;">Action Plan</h2>
+                            <p>${plan}</p>
+                        </div>
+                        
+                        <p style="text-align: right; margin-top: 2rem; font-style: italic;">Prepared by: Student</p>
+                    </div>
+                `;
+                
+                finalReport.innerHTML = reportHTML;
+            }
+            
+            // Initialize with empty values
+            textareas.forEach(textarea => {
+                const id = textarea.id;
+                const statusIndicator = document.getElementById(`${id}-status`);
+                statusIndicator.style.backgroundColor = '#666'; // Neutral color
+            });
+        });
+    </script>
+</body>
+</html>

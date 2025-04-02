@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica de Lectura - My Cat</title>
+    <style>
+:root {
+    --primary-color: #2E3192;
+    --secondary-color: #1BFFFF;
+    --accent-color: #D4145A;
+    --background: #0A0A0A;
+    --text-color: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --glass-effect: rgba(255, 255, 255, 0.1);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--background);
+    color: var(--text-color);
+    overflow-x: hidden;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(27, 255, 255, 0.2);
+    padding: 30px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+h1 {
+    color: var(--text-color);
+    text-align: center;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, var(--secondary-color), #fff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+h2 {
+    color: var(--secondary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    background: linear-gradient(45deg, var(--secondary-color), #fff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Contenedor de lectura y preguntas */
+.reading-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.reading-text {
+    font-size: 22px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 20px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.question {
+    margin-bottom: 25px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.options {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.option {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+}
+
+.option:hover {
+    background: rgba(27, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(27, 255, 255, 0.2);
+}
+
+.selected {
+    background: linear-gradient(45deg, rgba(46, 49, 146, 0.5), rgba(27, 255, 255, 0.5));
+    border-color: var(--secondary-color);
+}
+
+.correct {
+    background: rgba(46, 204, 113, 0.3);
+    border-color: #2ecc71;
+}
+
+.incorrect {
+    background: rgba(231, 76, 60, 0.3);
+    border-color: #e74c3c;
+}
+
+/* Estilos para el botón de enviar y resultados */
+.submit-btn, .retry-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+}
+
+.submit-btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.retry-btn {
+    display: none;
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    color: white;
+}
+
+.submit-btn:hover, .retry-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+/* Cambiar el color de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--background);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Responsive para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .reading-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .options {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Práctica de Lectura - My Cat</h1>
+        
+        <div class="reading-container">
+            <div class="reading-text">
+                <h2>My Cat</h2>
+                <p>My cat's name is Whiskers. He is very playful and loves to chase after toys. Every morning, he wakes me up by purring loudly and nudging my face.</p>
+                <p>Whiskers has soft, fluffy fur and big green eyes. He enjoys sitting in the sun and watching the birds outside the window.</p>
+                <p>In the evening, I feed him his favorite food, which is chicken. After dinner, we play together with a string toy. He jumps and runs around the house.</p>
+                <p>Sometimes, Whiskers likes to cuddle with me on the couch while I watch TV. He is not just a pet; he is my best friend!</p>
+            </div>
+            
+            <div id="quiz-container"></div>
+        </div>
+        
+        <button id="submit-btn" class="submit-btn">Check Answers</button>
+        <div id="result" class="result"></div>
+        <button id="retry-btn" class="retry-btn">Try Again</button>
+    </div>
+
+    <script>
+        // Quiz data
+        const questions = [
+            {
+                question: "1. What is the cat's name?",
+                options: ["a) Fluffy", "b) Whiskers", "c) Tom", "d) Kitty"],
+                answer: 1
+            },
+            {
+                question: "2. What does Whiskers love to chase?",
+                options: ["a) Birds", "b) Toys", "c) Mice", "d) Strings"],
+                answer: 1
+            },
+            {
+                question: "3. What color are Whiskers' eyes?",
+                options: ["a) Blue", "b) Brown", "c) Green", "d) Yellow"],
+                answer: 2
+            },
+            {
+                question: "4. What does Whiskers eat for dinner?",
+                options: ["a) Fish", "b) Chicken", "c) Beef", "d) Vegetables"],
+                answer: 1
+            },
+            {
+                question: "5. What does Whiskers do in the sun?",
+                options: ["a) Sleep", "b) Play", "c) Eat", "d) Watch birds"],
+                answer: 3
+            }
+        ];
+
+        // Get elements
+        const quizContainer = document.getElementById('quiz-container');
+        const submitButton = document.getElementById('submit-btn');
+        const resultDiv = document.getElementById('result');
+        const retryButton = document.getElementById('retry-btn');
+
+        // Generate questions in the DOM
+        function generateQuiz() {
+            questions.forEach((q, qIndex) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `<div>${q.question}</div>`;
+                
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options';
+                
+                q.options.forEach((option, oIndex) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+                    optionDiv.textContent = option;
+                    optionDiv.dataset.qIndex = qIndex;
+                    optionDiv.dataset.oIndex = oIndex;
+                    
+                    optionDiv.addEventListener('click', function() {
+                        const questionOptions = document.querySelectorAll(`.option[data-q-index="${qIndex}"]`);
+                        questionOptions.forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                    });
+                    
+                    optionsDiv.appendChild(optionDiv);
+                });
+                
+                questionDiv.appendChild(optionsDiv);
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        // Check answers and show results
+        function checkAnswers() {
+            let score = 0;
+            let answersMissing = false;
+            
+            questions.forEach((q, qIndex) => {
+                const selectedOption = document.querySelector(`.option.selected[data-q-index="${qIndex}"]`);
+                
+                if (!selectedOption) {
+                    answersMissing = true;
+                    return;
+                }
+                
+                const selectedIndex = parseInt(selectedOption.dataset.oIndex);
+                
+                if (selectedIndex === q.answer) {
+                    score++;
+                    selectedOption.classList.add('correct');
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    const correctOption = document.querySelector(`.option[data-q-index="${qIndex}"][data-o-index="${q.answer}"]`);
+                    correctOption.classList.add('correct');
+                }
+            });
+            
+            if (answersMissing) {
+                alert('Por favor, responde todas las preguntas antes de enviar.');
+                return;
+            }
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
+            
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = `Tu puntuación: ${score} de 5`;
+            resultDiv.style.backgroundColor = score >= 4 ? '#d4edda' : '#f8d7da';
+            resultDiv.style.color = score >= 4 ? '#155724' : '#721c24';
+            
+            submitButton.style.display = 'none';
+            retryButton.style.display = 'block';
+        }
+
+        // Reset the quiz
+        function resetQuiz() {
+            quizContainer.innerHTML = '';
+            generateQuiz();
+            resultDiv.style.display = 'none';
+            retryButton.style.display = 'none';
+            submitButton.style.display = 'block';
+        }
+
+        // Event listeners
+        submitButton.addEventListener('click', checkAnswers);
+        retryButton.addEventListener('click', resetQuiz);
+
+        // Initialize
+        generateQuiz();
+    </script>
+</body>
+</html> 

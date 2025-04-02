@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de Escritura en Inglés - Nivel A1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E3192;
+            --secondary-color: #1BFFFF;
+            --text-color: #ffffff;
+            --background-color: #121212;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .exercise-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+
+        .exercise-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: #000;
+            font-size: 1rem;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .exercise-textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 10px rgba(27, 255, 255, 0.2);
+        }
+
+        .check-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 1rem 1rem;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .check-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 15px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feedback.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feedback.correct {
+            background: rgba(46, 213, 115, 0.1);
+            border: 1px solid rgba(46, 213, 115, 0.3);
+            color: #2ed573;
+        }
+
+        .feedback.incorrect {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            color: #ff4757;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ejercicios de Escritura en Inglés - Nivel A1</h1>
+        
+        <div class="exercise-card" id="exercise-1">
+            <h3>Ejercicio 1: Descripción Personal</h3>
+            <p>Escribe una oración simple sobre ti mismo. Incluye tu nombre, edad y profesión o actividad.</p>
+            <p>Ejemplo: "My name is Maria. I am 22 years old. I am a student."</p>
+            <textarea class="exercise-textarea" placeholder="Escribe tu oración en inglés..."></textarea>
+            <button onclick="checkExercise(1)" class="check-button">Revisar</button>
+            <div class="feedback" id="feedback-1"></div>
+        </div>
+
+        <div class="exercise-card" id="exercise-2">
+            <h3>Ejercicio 2: Descripción de Familia</h3>
+            <p>Escribe 2-3 oraciones simples sobre tu familia. Menciona cuántos miembros hay y describe a uno de ellos.</p>
+            <p>Ejemplo: "I have a big family. My mother is a teacher. She is very kind."</p>
+            <textarea class="exercise-textarea" placeholder="Escribe tu oración en inglés..."></textarea>
+            <button onclick="checkExercise(2)" class="check-button">Revisar</button>
+            <div class="feedback" id="feedback-2"></div>
+        </div>
+
+        <div class="exercise-card" id="exercise-3">
+            <h3>Ejercicio 3: Mi Casa</h3>
+            <p>Escribe 2-3 oraciones simples sobre tu casa o apartamento. Describe su tamaño y un lugar que te gusta.</p>
+            <p>Ejemplo: "I live in a small apartment. My bedroom is blue. I like my living room."</p>
+            <textarea class="exercise-textarea" placeholder="Escribe tu oración en inglés..."></textarea>
+            <button onclick="checkExercise(3)" class="check-button">Revisar</button>
+            <div class="feedback" id="feedback-3"></div>
+        </div>
+
+        <div class="exercise-card" id="exercise-4">
+            <h3>Ejercicio 4: Mi Día</h3>
+            <p>Escribe 2-3 oraciones simples sobre lo que haces en un día típico.</p>
+            <p>Ejemplo: "I wake up at 7 am. I go to school. In the evening, I play football."</p>
+            <textarea class="exercise-textarea" placeholder="Escribe tu oración en inglés..."></textarea>
+            <button onclick="checkExercise(4)" class="check-button">Revisar</button>
+            <div class="feedback" id="feedback-4"></div>
+        </div>
+
+        <div class="exercise-card" id="exercise-5">
+            <h3>Ejercicio 5: Mi Pasatiempo</h3>
+            <p>Escribe 2-3 oraciones simples sobre tu pasatiempo favorito.</p>
+            <p>Ejemplo: "I like reading books. My favorite book is about adventures. I read for one hour every day."</p>
+            <textarea class="exercise-textarea" placeholder="Escribe tu oración en inglés..."></textarea>
+            <button onclick="checkExercise(5)" class="check-button">Revisar</button>
+            <div class="feedback" id="feedback-5"></div>
+        </div>
+    </div>
+
+    <script>
+        function checkExercise(exerciseNumber) {
+            const textarea = document.querySelector(`#exercise-${exerciseNumber} .exercise-textarea`);
+            const feedback = document.querySelector(`#exercise-${exerciseNumber} .feedback`);
+            const text = textarea.value.trim().toLowerCase();
+
+            // Validaciones específicas para cada ejercicio
+            let isValid = false;
+            let feedbackMessage = '';
+
+            switch(exerciseNumber) {
+                case 1:
+                    // Validar descripción personal
+                    isValid = text.includes('my name') && 
+                             (text.includes('i am') || text.includes("i'm")) &&
+                             text.includes('years old');
+                    feedbackMessage = isValid ? 
+                        '¡Excelente! Has incluido tu nombre y edad correctamente.' : 
+                        'Recuerda incluir: "My name is..." y "I am ... years old"';
+                    break;
+
+                case 2:
+                    // Validar descripción familiar
+                    isValid = (text.includes('family') || text.includes('mother') || 
+                              text.includes('father') || text.includes('sister') || 
+                              text.includes('brother')) &&
+                             text.includes('is');
+                    feedbackMessage = isValid ? 
+                        '¡Muy bien! Has descrito a tu familia correctamente.' : 
+                        'Asegúrate de mencionar a tu familia y usar el verbo "is" para describirlos.';
+                    break;
+
+                case 3:
+                    // Validar descripción de casa
+                    isValid = (text.includes('house') || text.includes('apartment')) &&
+                             (text.includes('live') || text.includes('room') || 
+                              text.includes('bedroom') || text.includes('kitchen'));
+                    feedbackMessage = isValid ? 
+                        '¡Excelente descripción de tu casa!' : 
+                        'Menciona donde vives (house/apartment) y describe alguna habitación.';
+                    break;
+
+                case 4:
+                    // Validar rutina diaria
+                    isValid = text.includes('wake') || text.includes('go') || 
+                             text.includes('eat') || text.includes('sleep');
+                    feedbackMessage = isValid ? 
+                        '¡Bien hecho! Has descrito tu rutina diaria.' : 
+                        'Incluye actividades diarias como: wake up, go to, eat, sleep...';
+                    break;
+
+                case 5:
+                    // Validar pasatiempos
+                    isValid = text.includes('like') || text.includes('love') || 
+                             text.includes('enjoy');
+                    feedbackMessage = isValid ? 
+                        '¡Excelente! Has expresado bien tu pasatiempo.' : 
+                        'Usa verbos como "like", "love" o "enjoy" para describir tu pasatiempo.';
+                    break;
+            }
+
+            // Validaciones generales
+            const hasEnoughWords = text.split(' ').length >= 5;
+            const hasPeriod = text.includes('.');
+            const hasCapitalLetter = textarea.value.trim()[0] === textarea.value.trim()[0].toUpperCase();
+
+            if (!hasEnoughWords) {
+                feedbackMessage = 'Escribe una respuesta más larga (al menos 5 palabras).';
+                isValid = false;
+            } else if (!hasPeriod) {
+                feedbackMessage += ' Recuerda terminar tus oraciones con un punto.';
+                isValid = false;
+            } else if (!hasCapitalLetter) {
+                feedbackMessage += ' Comienza las oraciones con mayúscula.';
+                isValid = false;
+            }
+
+            // Mostrar feedback
+            feedback.textContent = feedbackMessage;
+            feedback.className = `feedback ${isValid ? 'correct' : 'incorrect'} show`;
+        }
+    </script>
+</body>
+</html>

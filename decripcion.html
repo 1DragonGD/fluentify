@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descripción Personal - Writing A1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E3192;
+            --secondary-color: #1BFFFF;
+            --accent-color: #D4145A;
+            --background: #0A0A0A;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --glass-effect: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem 5%;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .exercise-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--glass-effect);
+        }
+
+        .exercise-title {
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .instruction {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .vocab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .vocab-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .match-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .match-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .match-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .match-item.selected {
+            background: var(--secondary-color);
+            color: var(--background);
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .correct {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+        }
+
+        .incorrect {
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff0000;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-effect);
+            color: var(--text-color);
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Ejercicio 1: Descripción Personal Simple -->
+        <div class="exercise-card">
+            <h2 class="exercise-title">Ejercicio 1: Completar Descripción</h2>
+            <div class="instruction">
+                <p>Completa la descripción personal usando las palabras del recuadro:</p>
+                <div class="vocab-list">
+                    <span class="vocab-item">tall</span>
+                    <span class="vocab-item">short</span>
+                    <span class="vocab-item">student</span>
+                    <span class="vocab-item">teacher</span>
+                    <span class="vocab-item">friendly</span>
+                    <span class="vocab-item">serious</span>
+                </div>
+            </div>
+            <textarea id="description-exercise" rows="5" placeholder="Usa las palabras del recuadro para crear tu descripción personal..."></textarea>
+            <button class="btn" onclick="checkDescription()">Verificar Descripción</button>
+            <div id="description-feedback" class="feedback"></div>
+        </div>
+
+        <!-- Ejercicio 2: Relacionar Descripciones -->
+        <div class="exercise-card">
+            <h2 class="exercise-title">Ejercicio 2: Relacionar Descripciones</h2>
+            <div class="instruction">
+                <p>Une las descripciones con la imagen correspondiente:</p>
+            </div>
+            <div class="match-container">
+                <div class="match-column">
+                    <div class="match-item" data-group="1">I am short and friendly</div>
+                    <div class="match-item" data-group="2">I am tall and serious</div>
+                    <div class="match-item" data-group="3">I am a student</div>
+                </div>
+                <div class="match-column">
+                    <div class="match-item" data-image="1">👧</div>
+                    <div class="match-item" data-image="2">👨‍🏫</div>
+                    <div class="match-item" data-image="3">👩</div>
+                </div>
+            </div>
+            <button class="btn" onclick="checkMatching()">Verificar Relación</button>
+            <div id="matching-feedback" class="feedback"></div>
+        </div>
+
+        <!-- Ejercicio 3: Ordenar Palabras -->
+        <div class="exercise-card">
+            <h2 class="exercise-title">Ejercicio 3: Ordenar Oraciones</h2>
+            <div class="instruction">
+                <p>Ordena las palabras para formar una descripción personal correcta:</p>
+            </div>
+            <div id="word-scramble">
+                <p id="scrambled-sentence">am / I / short / a / student</p>
+                <input type="text" id="sentence-order" placeholder="Escribe la oración correcta...">
+            </div>
+            <button class="btn" onclick="checkSentenceOrder()">Verificar Orden</button>
+            <div id="order-feedback" class="feedback"></div>
+        </div>
+
+        <!-- Ejercicio 4: Completar Diálogo -->
+        <div class="exercise-card">
+            <h2 class="exercise-title">Ejercicio 4: Completar Diálogo</h2>
+            <div class="instruction">
+                <p>Completa el diálogo con la información personal correcta:</p>
+            </div>
+            <div id="dialogue-exercise">
+                <p>A: Hi, what is your name?</p>
+                <input type="text" id="name-input" placeholder="Your answer...">
+                <p>A: How old are you?</p>
+                <input type="text" id="age-input" placeholder="Your answer...">
+                <p>A: What is your job?</p>
+                <input type="text" id="job-input" placeholder="Your answer...">
+            </div>
+            <button class="btn" onclick="checkDialogue()">Verificar Diálogo</button>
+            <div id="dialogue-feedback" class="feedback"></div>
+        </div>
+
+        <!-- Ejercicio 5: Escribir Descripción Completa -->
+        <div class="exercise-card">
+            <h2 class="exercise-title">Ejercicio 5: Descripción Completa</h2>
+            <div class="instruction">
+                <p>Escribe tu descripción personal completa en inglés (4-5 oraciones):</p>
+            </div>
+            <textarea id="full-description" rows="5" placeholder="Escribe aquí tu descripción personal..."></textarea>
+            <button class="btn" onclick="checkFullDescription()">Verificar Descripción</button>
+            <div id="full-description-feedback" class="feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        function checkDescription() {
+            const description = document.getElementById('description-exercise').value.toLowerCase();
+            const feedbackDiv = document.getElementById('description-feedback');
+            const requiredWords = ['tall', 'short', 'student', 'teacher', 'friendly', 'serious'];
+            
+            // Verificar si la descripción está vacía o es muy corta
+            if (description.trim().length < 10) {
+                feedbackDiv.innerHTML = 'La descripción es muy corta. Escribe oraciones completas.';
+                feedbackDiv.className = 'feedback incorrect';
+                return;
+            }
+
+            // Dividir el texto en oraciones
+            const sentences = description.split('.');
+            
+            // Verificar estructura básica de las oraciones
+            const hasValidStructure = sentences.some(sentence => {
+                sentence = sentence.trim();
+                return sentence.startsWith('i am') || sentence.startsWith("i'm");
+            });
+
+            // Contar palabras del vocabulario utilizadas
+            const matchedWords = requiredWords.filter(word => description.includes(word));
+            
+            // Verificar coherencia básica
+            const hasInvalidCombination = (
+                (description.includes('tall') && description.includes('short')) ||
+                (description.includes('friendly') && description.includes('serious')) ||
+                (description.includes('student') && description.includes('teacher'))
+            );
+
+            if (hasInvalidCombination) {
+                feedbackDiv.innerHTML = 'Hay una combinación inválida de palabras. No puedes ser alto y bajo al mismo tiempo, o estudiante y profesor, etc.';
+                feedbackDiv.className = 'feedback incorrect';
+            } else if (!hasValidStructure) {
+                feedbackDiv.innerHTML = 'Recuerda comenzar las oraciones con "I am" o "I\'m".';
+                feedbackDiv.className = 'feedback incorrect';
+            } else if (matchedWords.length < 2) {
+                feedbackDiv.innerHTML = 'Usa al menos dos palabras del vocabulario proporcionado.';
+                feedbackDiv.className = 'feedback incorrect';
+            } else if (description.split(' ').length < 5) {
+                feedbackDiv.innerHTML = 'La descripción necesita ser más completa. Usa oraciones más largas.';
+                feedbackDiv.className = 'feedback incorrect';
+            } else {
+                feedbackDiv.innerHTML = '¡Muy bien! Has creado una descripción coherente usando el vocabulario correctamente.';
+                feedbackDiv.className = 'feedback correct';
+            }
+        }
+
+        function checkMatching() {
+            const feedbackDiv = document.getElementById('matching-feedback');
+            const selectedItems = document.querySelectorAll('.match-item.selected');
+            
+            if (selectedItems.length === 2) {
+                const group = selectedItems[0].getAttribute('data-group');
+                const image = selectedItems[1].getAttribute('data-image');
+                
+                if (group === image) {
+                    feedbackDiv.innerHTML = '¡Correcto! Has relacionado correctamente.';
+                    feedbackDiv.className = 'feedback correct';
+                } else {
+                    feedbackDiv.innerHTML = 'Intenta de nuevo. La relación no es correcta.';
+                    feedbackDiv.className = 'feedback incorrect';
+                }
+            } else {
+                feedbackDiv.innerHTML = 'Selecciona una descripción y una imagen.';
+                feedbackDiv.className = 'feedback incorrect';
+            }
+        }
+
+        function checkSentenceOrder() {
+            const input = document.getElementById('sentence-order').value.toLowerCase().trim();
+            const feedbackDiv = document.getElementById('order-feedback');
+            
+            if (input === 'i am a short student') {
+                feedbackDiv.innerHTML = '¡Correcto! Has ordenado la oración perfectamente.';
+                feedbackDiv.className = 'feedback correct';
+            } else {
+                feedbackDiv.innerHTML = 'Intenta de nuevo. Recuerda el orden correcto de las palabras.';
+                feedbackDiv.className = 'feedback incorrect';
+            }
+        }
+
+        function checkDialogue() {
+            const nameInput = document.getElementById('name-input').value.trim();
+            const ageInput = document.getElementById('age-input').value.trim();
+            const jobInput = document.getElementById('job-input').value.trim();
+            const feedbackDiv = document.getElementById('dialogue-feedback');
+            
+            if (nameInput && ageInput && jobInput) {
+                feedbackDiv.innerHTML = '¡Excelente! Has completado el diálogo correctamente.';
+                feedbackDiv.className = 'feedback correct';
+            } else {
+                feedbackDiv.innerHTML = 'Por favor, completa todos los campos del diálogo.';
+                feedbackDiv.className = 'feedback incorrect';
+            }
+        }
+
+        function checkFullDescription() {
+            const description = document.getElementById('full-description').value.toLowerCase();
+            const feedbackDiv = document.getElementById('full-description-feedback');
+            
+            const requiredElements = [
+                'name', 'age', 'job', 'nationality', 
+                'personality', 'appearance'
+            ];
+            
+            const matchedElements = requiredElements.filter(element => 
+                description.includes(element)
+            );
+            
+            if (description.split(' ').length >= 20 && matchedElements.length >= 4) {
+                feedbackDiv.innerHTML = '¡Fantástico! Has creado una descripción personal completa.';
+                feedbackDiv.className = 'feedback correct';
+            } else {
+                feedbackDiv.innerHTML = 'Intenta expandir tu descripción. Incluye más detalles personales.';
+                feedbackDiv.className = 'feedback incorrect';
+            }
+        }
+
+        // Event listeners para ejercicio de relacionar
+        document.querySelectorAll('.match-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Deseleccionar otros elementos del mismo tipo
+                document.querySelectorAll(
+                    `.match-item[${this.getAttribute('data-group') ? 'data-group' : 'data-image'}]`
+                ).forEach(el => el.classList.remove('selected'));
+                
+                // Seleccionar el elemento actual
+                this.classList.toggle('selected');
+            });
+        });
+    </script>
+</body>
+</html>

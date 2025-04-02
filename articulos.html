@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- [Manteniendo los mismos estilos del head anterior...] -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Level Short Articles - Writing Practice</title>
+    <style>
+        :root {
+            --primary-color: #2E3192;
+            --secondary-color: #1BFFFF;
+            --accent-color: #D4145A;
+            --background: #0A0A0A;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --glass-effect: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            top: 0;
+        }
+
+        .logo {
+            height: 50px;
+            filter: drop-shadow(0 0 10px var(--secondary-color));
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem 0;
+            padding-top: 5rem;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .exercise-container {
+            padding: 8rem 5% 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .exercise {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .exercise h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .exercise p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .example-article {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            color: var(--text-color);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem 2rem;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .word-count {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./img/Captura_de_pantalla_2024-11-21_160111-removebg-preview.png" alt="Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="translator.html">Translator</a></li>
+                <li><a href="#">Topics</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1 class="page-title">B1 Level Short Articles Practice</h1>
+
+    <div class="exercise-container">
+        <!-- Exercise 1 -->
+        <div class="exercise">
+            <h3>1. My Daily Routine</h3>
+            <p><strong>Task:</strong> Write about your typical day, including your activities and schedule.</p>
+            <div class="example-article">
+                Useful Expressions:
+                - First, I usually...
+                - Then, I...
+                - After that...
+                - Finally...
+                - In the evening...
+            </div>
+            <p><strong>Word count:</strong> 80-100 words</p>
+            <textarea id="exercise1" placeholder="Example: First, I usually wake up at 7 AM. Then, I have breakfast..." oninput="updateWordCount(1)"></textarea>
+            <div id="wordCount1" class="word-count">Words: 0</div>
+            <button class="submit-button" onclick="checkArticle(1)">Get Feedback</button>
+            <div id="feedback1" class="feedback"></div>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="exercise">
+            <h3>2. My Last Weekend</h3>
+            <p><strong>Task:</strong> Write about what you did last weekend. Use past tense verbs.</p>
+            <div class="example-article">
+                Remember to use:
+                - Past tense verbs (went, visited, watched)
+                - Time expressions (last weekend, on Saturday, in the morning)
+                - Connecting words (and, but, because)
+            </div>
+            <p><strong>Word count:</strong> 70-90 words</p>
+            <textarea id="exercise2" placeholder="Example: Last weekend, I went to..." oninput="updateWordCount(2)"></textarea>
+            <div id="wordCount2" class="word-count">Words: 0</div>
+            <button class="submit-button" onclick="checkArticle(2)">Get Feedback</button>
+            <div id="feedback2" class="feedback"></div>
+        </div>
+
+        <!-- Exercise 3 -->
+        <div class="exercise">
+            <h3>3. My Favorite Place</h3>
+            <p><strong>Task:</strong> Describe your favorite room, park, or place in your city.</p>
+            <div class="example-article">
+                Include:
+                - Where it is
+                - What it looks like
+                - Why you like it
+                - What you do there
+            </div>
+            <p><strong>Word count:</strong> 80-100 words</p>
+            <textarea id="exercise3" placeholder="Example: My favorite place is..." oninput="updateWordCount(3)"></textarea>
+            <div id="wordCount3" class="word-count">Words: 0</div>
+            <button class="submit-button" onclick="checkArticle(3)">Get Feedback</button>
+            <div id="feedback3" class="feedback"></div>
+        </div>
+
+        <!-- Exercise 4 -->
+        <div class="exercise">
+            <h3>4. My Best Friend</h3>
+            <p><strong>Task:</strong> Write about your best friend or a family member.</p>
+            <div class="example-article">
+                Tell us about:
+                - Their appearance
+                - Their personality
+                - What you like to do together
+                - Why they are special to you
+            </div>
+            <p><strong>Word count:</strong> 70-90 words</p>
+            <textarea id="exercise4" placeholder="Example: My best friend's name is..." oninput="updateWordCount(4)"></textarea>
+            <div id="wordCount4" class="word-count">Words: 0</div>
+            <button class="submit-button" onclick="checkArticle(4)">Get Feedback</button>
+            <div id="feedback4" class="feedback"></div>
+        </div>
+
+        <!-- Exercise 5 -->
+        <div class="exercise">
+            <h3>5. My Favorite Food</h3>
+            <p><strong>Task:</strong> Write about your favorite meal and how to prepare it.</p>
+            <div class="example-article">
+                Talk about:
+                - What the food is
+                - What ingredients you need
+                - How to make it
+                - Why you like it
+            </div>
+            <p><strong>Word count:</strong> 80-100 words</p>
+            <textarea id="exercise5" placeholder="Example: My favorite food is..." oninput="updateWordCount(5)"></textarea>
+            <div id="wordCount5" class="word-count">Words: 0</div>
+            <button class="submit-button" onclick="checkArticle(5)">Get Feedback</button>
+            <div id="feedback5" class="feedback"></div>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 Jardines del Caqueta. Calle Principal, Ciudad del Caqueta
+    </footer>
+
+    <script>
+        function updateWordCount(exerciseNumber) {
+            const text = document.getElementById(`exercise${exerciseNumber}`).value;
+            const wordCount = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+            document.getElementById(`wordCount${exerciseNumber}`).textContent = `Words: ${wordCount}`;
+        }
+
+        function checkArticle(exerciseNumber) {
+            const article = document.getElementById(`exercise${exerciseNumber}`).value.trim();
+            const feedback = document.getElementById(`feedback${exerciseNumber}`);
+            const wordCount = article.split(/\s+/).filter(word => word.length > 0).length;
+            
+            let feedbackText = "Here's your feedback:<br><br>";
+            
+            // Check word count
+            const wordCountRanges = {
+                1: [80, 100],
+                2: [70, 90],
+                3: [80, 100],
+                4: [70, 90],
+                5: [80, 100]
+            };
+            
+            const [minWords, maxWords] = wordCountRanges[exerciseNumber];
+            
+            if (wordCount < minWords) {
+                feedbackText += `- Try to write a bit more! (current: ${wordCount} words, aim for: ${minWords}-${maxWords} words)<br>`;
+            } else if (wordCount > maxWords) {
+                feedbackText += `- Try to be more concise! (current: ${wordCount} words, aim for: ${minWords}-${maxWords} words)<br>`;
+            } else {
+                feedbackText += `- Perfect length! (${wordCount} words)<br>`;
+            }
+
+            // Basic checks for each exercise type
+            switch(exerciseNumber) {
+                case 1:
+                    if (!article.toLowerCase().includes("then") && !article.toLowerCase().includes("after")) {
+                        feedbackText += "- Try using time expressions (then, after that, later)<br>";
+                    }
+                    if (!article.toLowerCase().includes("usually") && !article.toLowerCase().includes("always")) {
+                        feedbackText += "- Include some frequency words (usually, always, sometimes)<br>";
+                    }
+                    break;
+                case 2:
+                    if (!article.toLowerCase().includes("last") && !article.toLowerCase().includes("went") && !article.toLowerCase().includes("was")) {
+                        feedbackText += "- Remember to use past tense verbs and time expressions<br>";
+                    }
+                    break;
+                case 3:
+                    if (!article.toLowerCase().includes("because")) {
+                        feedbackText += "- Try to explain why you like this place using 'because'<br>";
+                    }
+                    break;
+                case 4:
+                    if (!article.toLowerCase().includes("like") && !article.toLowerCase().includes("love")) {
+                        feedbackText += "- Don't forget to express your feelings about your friend<br>";
+                    }
+                    break;
+                case 5:
+                    if (!article.toLowerCase().includes("need") && !article.toLowerCase().includes("first")) {
+                        feedbackText += "- Try to include some basic instructions or ingredients<br>";
+                    }
+                    break;
+            }
+
+            feedbackText += "<br>¡Buen trabajo! Keep practicing! 😊";
+            feedback.innerHTML = feedbackText;
+            feedback.style.backgroundColor = "rgba(27, 255, 255, 0.1)";
+        }
+    </script>
+</body>
+</html>
