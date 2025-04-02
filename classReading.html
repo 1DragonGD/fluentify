@@ -28,9 +28,27 @@ body {
     color: var(--text-color);
     overflow-x: hidden;
     line-height: 1.6;
-    max-width: 800px;
+}
+
+.main-container {
+    display: flex;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    gap: 20px;
+}
+
+.text-container {
+    flex: 1;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.questions-container {
+    flex: 1;
 }
 
 .container {
@@ -178,6 +196,17 @@ h2 {
     width: 10px;
 }
 
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    
+    .text-container {
+        position: relative;
+        max-height: none;
+    }
+}
+
 @media (min-width: 600px) {
     .options {
         grid-template-columns: 1fr 1fr;
@@ -186,28 +215,36 @@ h2 {
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>English Reading Practice - Level A2</h1>
-        
-        <div class="reading-text">
-            <h2>My Classmates</h2>
-            <p>Hi! My name is Sarah, and I want to tell you about my classmates. We are a small group of ten students in our English class. Each of us has different interests and hobbies.</p>
-            <p>First, there is John. He is 26 years old and loves playing soccer. He plays every weekend with his friends. John is very friendly and always makes us laugh.</p>
-            <p>Then, we have Maria. She is 24 years old and enjoys painting. She often brings her sketches to class. Maria is very creative and has a great imagination.</p>
-            <p>Next is Ahmed. He is 23 years old and loves technology. He wants to be a software engineer. Ahmed is very smart and helps us with our homework.</p>
-            <p>We also have Lisa. She is 25 years old and loves to dance. She takes dance classes every week. Lisa is very energetic and always encourages us to join her.</p>
-            <p>Another classmate is David. He is 27 years old and enjoys cooking. He often shares his recipes with us. David is a great cook, and we love to try his food!</p>
-            <p>Finally, there is Emily. She is 22 years old and loves reading books. She always has a book with her. Emily is very quiet but has a lot of interesting stories to share.</p>
-            <p>We all get along very well. After class, we often go to a café together to study or just talk. I am happy to have such wonderful classmates!</p>
+    <div class="main-container">
+        <div class="text-container">
+            <div class="container">
+                <h1>English Reading Practice - Level A2</h1>
+                
+                <div class="reading-text">
+                    <h2>My Classmates</h2>
+                    <p>Hi! My name is Sarah, and I want to tell you about my classmates. We are a small group of ten students in our English class. Each of us has different interests and hobbies.</p>
+                    <p>First, there is John. He is 26 years old and loves playing soccer. He plays every weekend with his friends. John is very friendly and always makes us laugh.</p>
+                    <p>Then, we have Maria. She is 24 years old and enjoys painting. She often brings her sketches to class. Maria is very creative and has a great imagination.</p>
+                    <p>Next is Ahmed. He is 23 years old and loves technology. He wants to be a software engineer. Ahmed is very smart and helps us with our homework.</p>
+                    <p>We also have Lisa. She is 25 years old and loves to dance. She takes dance classes every week. Lisa is very energetic and always encourages us to join her.</p>
+                    <p>Another classmate is David. He is 27 years old and enjoys cooking. He often shares his recipes with us. David is a great cook, and we love to try his food!</p>
+                    <p>Finally, there is Emily. She is 22 years old and loves reading books. She always has a book with her. Emily is very quiet but has a lot of interesting stories to share.</p>
+                    <p>We all get along very well. After class, we often go to a café together to study or just talk. I am happy to have such wonderful classmates!</p>
+                </div>
+            </div>
         </div>
         
-        <div id="quiz-container">
-            <!-- Questions will be inserted here by JavaScript -->
+        <div class="questions-container">
+            <div class="container">
+                <div id="quiz-container">
+                    <!-- Questions will be inserted here by JavaScript -->
+                </div>
+                
+                <button id="submit-btn" class="submit-btn">Check Answers</button>
+                <div id="result" class="result"></div>
+                <button id="retry-btn" class="retry-btn">Try Again</button>
+            </div>
         </div>
-        
-        <button id="submit-btn" class="submit-btn">Check Answers</button>
-        <div id="result" class="result"></div>
-        <button id="retry-btn" class="retry-btn">Try Again</button>
     </div>
 
     <script>
@@ -276,7 +313,7 @@ h2 {
             questions.forEach((q, qIndex) => {
                 const questionDiv = document.createElement('div');
                 questionDiv.className = 'question';
-                questionDiv.innerHTML = `<div>${q.question}</div>`;
+                questionDiv.innerHTML = `<h3>${q.question}</h3>`;
                 
                 const optionsDiv = document.createElement('div');
                 optionsDiv.className = 'options';
@@ -343,9 +380,10 @@ h2 {
             
             // Show result
             resultDiv.style.display = 'block';
-            resultDiv.textContent = `Your score: ${score} out of 10`;
-            resultDiv.style.backgroundColor = score >= 7 ? '#d4edda' : '#f8d7da';
-            resultDiv.style.color = score >= 7 ? '#155724' : '#721c24';
+            resultDiv.textContent = `Your score: ${score} out of ${questions.length}`;
+            resultDiv.style.background = score >= 7 ? 
+                'linear-gradient(45deg, rgba(46, 204, 113, 0.3), rgba(27, 255, 255, 0.3))' : 
+                'linear-gradient(45deg, rgba(231, 76, 60, 0.3), rgba(212, 20, 90, 0.3))';
             
             // Show retry button and hide submit button
             submitButton.style.display = 'none';

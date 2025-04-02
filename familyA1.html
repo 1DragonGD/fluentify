@@ -1,375 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Reading Practice - Level A1</title>
-    <style>
-:root {
-    --primary-color: #2E3192;
-    --secondary-color: #1BFFFF;
-    --accent-color: #D4145A;
-    --background: #0A0A0A;
-    --text-color: #ffffff;
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --glass-effect: rgba(255, 255, 255, 0.1);
-}
-
-/* Estilos base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    background: var(--background);
-    color: var(--text-color);
-    overflow-x: hidden;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.container {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 30px;
-    box-shadow: 0 0 20px rgba(27, 255, 255, 0.2);
-    padding: 30px;
-    margin-bottom: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-h1 {
-    color: var(--text-color);
-    text-align: center;
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-    font-size: 2.5rem;
-    background-color: var(--secondary-color);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-h2 {
-    color: var(--secondary-color);
-    margin-top: 30px;
-    font-size: 1.8rem;
-    background: linear-gradient(45deg, var(--secondary-color), #fff);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.reading-text {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 20px;
-    border-radius: 20px;
-    border-left: 4px solid var(--secondary-color);
-    margin-bottom: 25px;
-}
-
-.question {
-    margin-bottom: 25px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.options {
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-}
-
-.option {
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: var(--text-color);
-}
-
-.option:hover {
-    background: rgba(27, 255, 255, 0.1);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(27, 255, 255, 0.2);
-}
-
-.selected {
-    background: linear-gradient(45deg, rgba(46, 49, 146, 0.5), rgba(27, 255, 255, 0.5));
-    border-color: var(--secondary-color);
-}
-
-.correct {
-    background: rgba(46, 204, 113, 0.3);
-    border-color: #2ecc71;
-}
-
-.incorrect {
-    background: rgba(231, 76, 60, 0.3);
-    border-color: #e74c3c;
-}
-
-.submit-btn {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 20px;
-}
-
-.submit-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
-}
-
-.result {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 20px;
-    text-align: center;
-    font-weight: bold;
-    display: none;
-}
-
-.retry-btn {
-    display: none;
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 15px;
-}
-
-.retry-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
-}
-
-/* Cambiar el color de la barra de desplazamiento */
-::-webkit-scrollbar-thumb {
-    background-color: var(--secondary-color);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background-color: var(--background);
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-@media (min-width: 600px) {
-    .options {
-        grid-template-columns: 1fr 1fr;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>English Reading Practice - Level A1</title>
+  <style>
+    :root {
+      --primary-color: #2E3192;
+      --secondary-color: #1BFFFF;
+      --accent-color: #D4145A;
+      --background: #0A0A0A;
+      --text-color: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --glass-effect: rgba(255, 255, 255, 0.1);
     }
-}
-    </style>
+
+    /* Reseteo y estilos base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--background);
+      color: var(--text-color);
+      overflow: hidden; /* Evita doble scroll en algunos navegadores */
+    }
+
+    /* Contenedor principal en dos columnas */
+    .main-container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Columna izquierda: Texto de lectura */
+    .left-column {
+      width: 40%;             /* Ajusta el ancho según tu preferencia */
+      position: sticky;       /* "Pega" la columna en la parte superior */
+      top: 0;                 /* Para que se mantenga fija en el top */
+      overflow-y: auto;       /* Si el texto es más largo que la pantalla, se podrá desplazar dentro de esta columna */
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Columna derecha: Preguntas y respuestas */
+    .right-column {
+      width: 60%;             /* Ajusta el ancho según tu preferencia */
+      overflow-y: auto;       /* Esta columna se desplazará de manera independiente */
+      padding: 20px;
+    }
+
+    /* Título */
+    h1 {
+      color: var(--text-color);
+      text-align: center;
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      background-color: var(--secondary-color);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    h2 {
+      color: var(--secondary-color);
+      margin-top: 30px;
+      font-size: 1.8rem;
+      background: linear-gradient(45deg, var(--secondary-color), #fff);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 15px;
+    }
+
+    .reading-text {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 20px;
+      border-radius: 20px;
+      border-left: 4px solid var(--secondary-color);
+      margin-bottom: 25px;
+    }
+
+    /* Cuadro de cada pregunta */
+    .question {
+      margin-bottom: 25px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Opciones */
+    .options {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 600px) {
+      .options {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .option {
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--text-color);
+    }
+    .option:hover {
+      background: rgba(27, 255, 255, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(27, 255, 255, 0.2);
+    }
+    .selected {
+      background: linear-gradient(45deg, rgba(46, 49, 146, 0.5), rgba(27, 255, 255, 0.5));
+      border-color: var(--secondary-color);
+    }
+    .correct {
+      background: rgba(46, 204, 113, 0.3);
+      border-color: #2ecc71;
+    }
+    .incorrect {
+      background: rgba(231, 76, 60, 0.3);
+      border-color: #e74c3c;
+    }
+
+    /* Botón de enviar */
+    .submit-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 20px;
+    }
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+    }
+
+    /* Resultado */
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 20px;
+      text-align: center;
+      font-weight: bold;
+      display: none;
+    }
+
+    /* Botón de reintento */
+    .retry-btn {
+      display: none;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 15px;
+    }
+    .retry-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(27, 255, 255, 0.2);
+    }
+
+    /* Scrollbar personalizado (opcional) */
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--secondary-color);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: var(--background);
+    }
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>English Reading Practice - Level A1</h1>
-        
-        <div class="reading-text">
-            <h2>My Family</h2>
-            <p>Hello! My name is Tom. I want to tell you about my family. I have a small family. There are four people in my family: my father, my mother, my sister, and me.</p>
-            <p>My father's name is John. He is 45 years old. He is a doctor. He works in a hospital. My father is very kind and helps many people.</p>
-            <p>My mother's name is Mary. She is 43 years old. She is a teacher. She teaches English at a school. My mother loves reading books and cooking delicious food.</p>
-            <p>I have one sister. Her name is Lucy. She is 10 years old. She is a student. Lucy loves playing with her friends and drawing pictures. She is very creative.</p>
-            <p>We live in a small house in the city. We have a garden with flowers. On weekends, we like to spend time together. We go to the park, have picnics, and play games.</p>
-            <p>I love my family very much. They make me happy!</p>
-        </div>
-        
-        <div id="quiz-container">
-            <!-- Questions will be inserted here by JavaScript -->
-        </div>
-        
-        <button id="submit-btn" class="submit-btn">Check Answers</button>
-        <div id="result" class="result"></div>
-        <button id="retry-btn" class="retry-btn">Try Again</button>
+  <div class="main-container">
+    
+    <!-- COLUMNA IZQUIERDA: TEXTO DE LECTURA -->
+    <div class="left-column">
+      <h1>English Reading Practice - Level A1</h1>
+      
+      <div class="reading-text">
+        <h2>My Family</h2>
+        <p>Hello! My name is Tom. I want to tell you about my family. I have a small family. There are four people in my family: my father, my mother, my sister, and me.</p>
+        <p>My father's name is John. He is 45 years old. He is a doctor. He works in a hospital. My father is very kind and helps many people.</p>
+        <p>My mother's name is Mary. She is 43 years old. She is a teacher. She teaches English at a school. My mother loves reading books and cooking delicious food.</p>
+        <p>I have one sister. Her name is Lucy. She is 10 years old. She is a student. Lucy loves playing with her friends and drawing pictures. She is very creative.</p>
+        <p>We live in a small house in the city. We have a garden with flowers. On weekends, we like to spend time together. We go to the park, have picnics, and play games.</p>
+        <p>I love my family very much. They make me happy!</p>
+      </div>
+    </div>
+    
+    <!-- COLUMNA DERECHA: PREGUNTAS Y RESPUESTAS -->
+    <div class="right-column">
+      <div id="quiz-container"></div>
+      <button id="submit-btn" class="submit-btn">Check Answers</button>
+      <div id="result" class="result"></div>
+      <button id="retry-btn" class="retry-btn">Try Again</button>
     </div>
 
-    <script>
+  </div>
+
+  <!-- JavaScript del cuestionario -->
+  <script>
+    const questions = [
+      {
+        question: "1. How many people are in Tom's family?",
+        options: ["a) Three", "b) Four", "c) Five", "d) Six"],
+        answer: 1
+      },
+      {
+        question: "2. What is Tom's father's name?",
+        options: ["a) John", "b) Mike", "c) David", "d) Peter"],
+        answer: 0
+      },
+      {
+        question: "3. How old is Tom's mother?",
+        options: ["a) 40", "b) 43", "c) 45", "d) 50"],
+        answer: 1
+      },
+      {
+        question: "4. What does Tom's father do?",
+        options: ["a) Teacher", "b) Doctor", "c) Engineer", "d) Chef"],
+        answer: 1
+      },
+      {
+        question: "5. How old is Lucy?",
+        options: ["a) 8", "b) 9", "c) 10", "d) 11"],
+        answer: 2
+      },
+      {
+        question: "6. What does Tom's mother love?",
+        options: ["a) Sports", "b) Cooking", "c) Traveling", "d) Gardening"],
+        answer: 1
+      },
+      {
+        question: "7. Where do they live?",
+        options: ["a) In a big house", "b) In a small house", "c) In an apartment", "d) In a castle"],
+        answer: 1
+      },
+      {
+        question: "8. What do they do on weekends?",
+        options: ["a) Go to school", "b) Spend time together", "c) Work", "d) Watch TV"],
+        answer: 1
+      },
+      {
+        question: "9. What does Lucy love to do?",
+        options: ["a) Play sports", "b) Draw pictures", "c) Read books", "d) Cook"],
+        answer: 1
+      },
+      {
+        question: "10. How does Tom feel about his family?",
+        options: ["a) Sad", "b) Happy", "c) Angry", "d) Bored"],
+        answer: 1
+      }
+    ];
+
+    const quizContainer = document.getElementById('quiz-container');
+    const submitButton = document.getElementById('submit-btn');
+    const resultDiv = document.getElementById('result');
+    const retryButton = document.getElementById('retry-btn');
+
+    // Generar preguntas
+    function generateQuiz() {
+      questions.forEach((q, qIndex) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question';
+        questionDiv.innerHTML = `<div>${q.question}</div>`;
         
-        const questions = [
-            {
-                question: "1. How many people are in Tom's family?",
-                options: ["a) Three", "b) Four", "c) Five", "d) Six"],
-                answer: 1
-            },
-            {
-                question: "2. What is Tom's father's name?",
-                options: ["a) John", "b) Mike", "c) David", "d) Peter"],
-                answer: 0
-            },
-            {
-                question: "3. How old is Tom's mother?",
-                options: ["a) 40", "b) 43", "c) 45", "d) 50"],
-                answer: 1
-            },
-            {
-                question: "4. What does Tom's father do?",
-                options: ["a) Teacher", "b) Doctor", "c) Engineer", "d) Chef"],
-                answer: 1
-            },
-            {
-                question: "5. How old is Lucy?",
-                options: ["a) 8", "b) 9", "c) 10", "d) 11"],
-                answer: 2
-            },
-            {
-                question: "6. What does Tom's mother love?",
-                options: ["a) Sports", "b) Cooking", "c) Traveling", "d) Gardening"],
-                answer: 1
-            },
-            {
-                question: "7. Where do they live?",
-                options: ["a) In a big house", "b) In a small house", "c) In an apartment", "d) In a castle"],
-                answer: 1
-            },
-            {
-                question: "8. What do they do on weekends?",
-                options: ["a) Go to school", "b) Spend time together", "c) Work", "d) Watch TV"],
-                answer: 1
-            },
-            {
-                question: "9. What does Lucy love to do?",
-                options: ["a) Play sports", "b) Draw pictures", "c) Read books", "d) Cook"],
-                answer: 1
-            },
-            {
-                question: "10. How does Tom feel about his family?",
-                options: ["a) Sad", "b) Happy", "c) Angry", "d) Bored"],
-                answer: 1
-            }
-        ];
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'options';
+        
+        q.options.forEach((option, oIndex) => {
+          const optionDiv = document.createElement('div');
+          optionDiv.className = 'option';
+          optionDiv.textContent = option;
+          optionDiv.dataset.qIndex = qIndex;
+          optionDiv.dataset.oIndex = oIndex;
+          
+          optionDiv.addEventListener('click', function() {
+            // Quitar "selected" de todas las opciones de esta pregunta
+            const questionOptions = document.querySelectorAll(`.option[data-q-index="${qIndex}"]`);
+            questionOptions.forEach(opt => opt.classList.remove('selected'));
+            // Agregar "selected" a la opción clickeada
+            this.classList.add('selected');
+          });
+          
+          optionsDiv.appendChild(optionDiv);
+        });
+        
+        questionDiv.appendChild(optionsDiv);
+        quizContainer.appendChild(questionDiv);
+      });
+    }
 
-        // Get elements
-        const quizContainer = document.getElementById('quiz-container');
-        const submitButton = document.getElementById('submit-btn');
-        const resultDiv = document.getElementById('result');
-        const retryButton = document.getElementById('retry-btn');
-
-        // Generate questions in the DOM
-        function generateQuiz() {
-            questions.forEach((q, qIndex) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
-                questionDiv.innerHTML = `<div>${q.question}</div>`;
-                
-                const optionsDiv = document.createElement('div');
-                optionsDiv.className = 'options';
-                
-                q.options.forEach((option, oIndex) => {
-                    const optionDiv = document.createElement('div');
-                    optionDiv.className = 'option';
-                    optionDiv.textContent = option;
-                    optionDiv.dataset.qIndex = qIndex;
-                    optionDiv.dataset.oIndex = oIndex;
-                    
-                    optionDiv.addEventListener('click', function() {
-                        // Remove selected class from all options in this question
-                        const questionOptions = document.querySelectorAll(`.option[data-q-index="${qIndex}"]`);
-                        questionOptions.forEach(opt => opt.classList.remove('selected'));
-                        
-                        // Add selected class to this option
-                        this.classList.add('selected');
-                    });
-                    
-                    optionsDiv.appendChild(optionDiv);
-                });
-                
-                questionDiv.appendChild(optionsDiv);
-                quizContainer.appendChild(questionDiv);
-            });
+    // Verificar respuestas
+    function checkAnswers() {
+      let score = 0;
+      let answersMissing = false;
+      
+      questions.forEach((q, qIndex) => {
+        const selectedOption = document.querySelector(`.option.selected[data-q-index="${qIndex}"]`);
+        
+        if (!selectedOption) {
+          answersMissing = true;
+          return;
         }
-
-        // Check answers and show results
-        function checkAnswers() {
-            let score = 0;
-            let answersMissing = false;
-            
-            questions.forEach((q, qIndex) => {
-                const selectedOption = document.querySelector(`.option.selected[data-q-index="${qIndex}"]`);
-                
-                if (!selectedOption) {
-                    answersMissing = true;
-                    return;
-                }
-                
-                const selectedIndex = parseInt(selectedOption.dataset.oIndex);
-                
-                if (selectedIndex === q.answer) {
-                    score++;
-                    selectedOption.classList.add('correct');
-                } else {
-                    selectedOption.classList.add('incorrect');
-                    // Highlight the correct answer
-                    const correctOption = document.querySelector(`.option[data-q-index="${qIndex}"][data-o-index="${q.answer}"]`);
-                    correctOption.classList.add('correct');
-                }
-            });
-            
-            if (answersMissing) {
-                alert('Please answer all questions before submitting.');
-                return;
-            }
-            
-            // Disable all options after submission
-            document.querySelectorAll('.option').forEach(opt => {
-                opt.style.pointerEvents = 'none';
-            });
-            
-            // Show result
-            resultDiv.style.display = 'block';
-            resultDiv.textContent = `Your score: ${score} out of 10`;
-            resultDiv.style.backgroundColor = score >= 7 ? '#d4edda' : '#f8d7da';
-            resultDiv.style.color = score >= 7 ? '#155724' : '#721c24';
-            
-            // Show retry button and hide submit button
-            submitButton.style.display = 'none';
-            retryButton.style.display = 'block';
+        
+        const selectedIndex = parseInt(selectedOption.dataset.oIndex);
+        
+        if (selectedIndex === q.answer) {
+          score++;
+          selectedOption.classList.add('correct');
+        } else {
+          selectedOption.classList.add('incorrect');
+          // Resaltar la respuesta correcta
+          const correctOption = document.querySelector(`.option[data-q-index="${qIndex}"][data-o-index="${q.answer}"]`);
+          correctOption.classList.add('correct');
         }
+      });
+      
+      if (answersMissing) {
+        alert('Please answer all questions before submitting.');
+        return;
+      }
+      
+      // Deshabilitar todas las opciones
+      document.querySelectorAll('.option').forEach(opt => {
+        opt.style.pointerEvents = 'none';
+      });
+      
+      // Mostrar resultado
+      resultDiv.style.display = 'block';
+      resultDiv.textContent = `Your score: ${score} out of ${questions.length}`;
+      resultDiv.style.backgroundColor = score >= 7 ? '#d4edda' : '#f8d7da';
+      resultDiv.style.color = score >= 7 ? '#155724' : '#721c24';
+      
+      // Mostrar botón de reintentar y ocultar "Check Answers"
+      submitButton.style.display = 'none';
+      retryButton.style.display = 'block';
+    }
 
-        // Reset the quiz
-        function resetQuiz() {
-            // Remove all questions
-            quizContainer.innerHTML = '';
-            
-            // Generate quiz again
-            generateQuiz();
-            
-            // Hide result and retry button, show submit button
-            resultDiv.style.display = 'none';
-            retryButton.style.display = 'none';
-            submitButton.style.display = 'block';
-        }
+    // Reiniciar el quiz
+    function resetQuiz() {
+      quizContainer.innerHTML = '';
+      generateQuiz();
+      resultDiv.style.display = 'none';
+      retryButton.style.display = 'none';
+      submitButton.style.display = 'block';
+    }
 
-        // Event listeners
-        submitButton.addEventListener('click', checkAnswers);
-        retryButton.addEventListener('click', resetQuiz);
+    submitButton.addEventListener('click', checkAnswers);
+    retryButton.addEventListener('click', resetQuiz);
 
-        // Initialize
-        generateQuiz();
-    </script>
+    // Iniciar
+    generateQuiz();
+  </script>
 </body>
 </html>

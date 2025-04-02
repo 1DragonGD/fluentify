@@ -28,9 +28,27 @@ body {
     color: var(--text-color);
     overflow-x: hidden;
     line-height: 1.6;
-    max-width: 800px;
+}
+
+.main-container {
+    display: flex;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    gap: 20px;
+}
+
+.text-container {
+    flex: 1;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.questions-container {
+    flex: 1;
 }
 
 .container {
@@ -178,6 +196,17 @@ h2 {
     width: 10px;
 }
 
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    
+    .text-container {
+        position: relative;
+        max-height: none;
+    }
+}
+
 @media (min-width: 600px) {
     .options {
         grid-template-columns: 1fr 1fr;
@@ -186,25 +215,33 @@ h2 {
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>English Reading Practice - Level A2</h1>
-        
-        <div class="reading-text">
-            <h2>My Musical TasteMusical Taste</h2>
-            <p>Hi! My name is Sarah. I am 25 years old. I love music! My favorite genres are pop, rock, and jazz.</p>
-            <p>In the morning, I usually listen to pop music. It makes me feel happy and energetic. My favorite pop singer is Taylor Swift.</p>
-            <p>In the afternoon, I like to listen to rock music. I enjoy bands like Coldplay and Imagine Dragons. Their songs are very powerful.</p>
-            <p>In the evening, I relax with some jazz music. I love the smooth sounds of the saxophone. My favorite jazz musician is Miles Davis.</p>
-            <p>On weekends, I often go to concerts with my friends. We have a great time enjoying live music together. Music is a big part of my life!</p>
+    <div class="main-container">
+        <div class="text-container">
+            <div class="container">
+                <h1>English Reading Practice - Level A2</h1>
+                
+                <div class="reading-text">
+                    <h2>My Musical Taste</h2>
+                    <p>Hi! My name is Sarah. I am 25 years old. I love music! My favorite genres are pop, rock, and jazz.</p>
+                    <p>In the morning, I usually listen to pop music. It makes me feel happy and energetic. My favorite pop singer is Taylor Swift.</p>
+                    <p>In the afternoon, I like to listen to rock music. I enjoy bands like Coldplay and Imagine Dragons. Their songs are very powerful.</p>
+                    <p>In the evening, I relax with some jazz music. I love the smooth sounds of the saxophone. My favorite jazz musician is Miles Davis.</p>
+                    <p>On weekends, I often go to concerts with my friends. We have a great time enjoying live music together. Music is a big part of my life!</p>
+                </div>
+            </div>
         </div>
         
-        <div id="quiz-container">
-            <!-- Questions will be inserted here by JavaScript -->
+        <div class="questions-container">
+            <div class="container">
+                <div id="quiz-container">
+                    <!-- Questions will be inserted here by JavaScript -->
+                </div>
+                
+                <button id="submit-btn" class="submit-btn">Check Answers</button>
+                <div id="result" class="result"></div>
+                <button id="retry-btn" class="retry-btn">Try Again</button>
+            </div>
         </div>
-        
-        <button id="submit-btn" class="submit-btn">Check Answers</button>
-        <div id="result" class="result"></div>
-        <button id="retry-btn" class="retry-btn">Try Again</button>
     </div>
 
     <script>
@@ -273,7 +310,7 @@ h2 {
             questions.forEach((q, qIndex) => {
                 const questionDiv = document.createElement('div');
                 questionDiv.className = 'question';
-                questionDiv.innerHTML = `<div>${q.question}</div>`;
+                questionDiv.innerHTML = `<h3>${q.question}</h3>`;
                 
                 const optionsDiv = document.createElement('div');
                 optionsDiv.className = 'options';
@@ -340,9 +377,10 @@ h2 {
             
             // Show result
             resultDiv.style.display = 'block';
-            resultDiv.textContent = `Your score: ${score} out of 10`;
-            resultDiv.style.backgroundColor = score >= 7 ? '#d4edda' : '#f8d7da';
-            resultDiv.style.color = score >= 7 ? '#155724' : '#721c24';
+            resultDiv.textContent = `Your score: ${score} out of ${questions.length}`;
+            resultDiv.style.background = score >= 7 ? 
+                'linear-gradient(45deg, rgba(46, 204, 113, 0.3), rgba(27, 255, 255, 0.3))' : 
+                'linear-gradient(45deg, rgba(231, 76, 60, 0.3), rgba(212, 20, 90, 0.3))';
             
             // Show retry button and hide submit button
             submitButton.style.display = 'none';

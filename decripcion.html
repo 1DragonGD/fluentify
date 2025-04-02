@@ -142,7 +142,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- Ejercicio 1: Descripción Personal Simple -->
+        <!-- Ejercicio 1: Completar Descripción -->
         <div class="exercise-card">
             <h2 class="exercise-title">Ejercicio 1: Completar Descripción</h2>
             <div class="instruction">
@@ -158,6 +158,7 @@
             </div>
             <textarea id="description-exercise" rows="5" placeholder="Usa las palabras del recuadro para crear tu descripción personal..."></textarea>
             <button class="btn" onclick="checkDescription()">Verificar Descripción</button>
+            <button class="btn" onclick="resetExercise('description-exercise', 'description-feedback')">Intentar de nuevo</button>
             <div id="description-feedback" class="feedback"></div>
         </div>
 
@@ -212,6 +213,7 @@
                 <input type="text" id="job-input" placeholder="Your answer...">
             </div>
             <button class="btn" onclick="checkDialogue()">Verificar Diálogo</button>
+            <button class="btn" onclick="resetExercise(['name-input', 'age-input', 'job-input'], 'dialogue-feedback')">Intentar de nuevo</button>
             <div id="dialogue-feedback" class="feedback"></div>
         </div>
 
@@ -223,6 +225,7 @@
             </div>
             <textarea id="full-description" rows="5" placeholder="Escribe aquí tu descripción personal..."></textarea>
             <button class="btn" onclick="checkFullDescription()">Verificar Descripción</button>
+            <button class="btn" onclick="resetExercise('full-description', 'full-description-feedback')">Intentar de nuevo</button>
             <div id="full-description-feedback" class="feedback"></div>
         </div>
     </div>
@@ -316,35 +319,72 @@
             const ageInput = document.getElementById('age-input').value.trim();
             const jobInput = document.getElementById('job-input').value.trim();
             const feedbackDiv = document.getElementById('dialogue-feedback');
-            
-            if (nameInput && ageInput && jobInput) {
+
+            // Validar que el nombre sea texto
+            const isNameValid = /^[a-zA-Z\s]+$/.test(nameInput);
+
+            // Validar que la edad sea un número entre 1 y 120
+            const isAgeValid = /^\d+$/.test(ageInput) && parseInt(ageInput) > 0 && parseInt(ageInput) <= 120;
+
+            // Validar que el trabajo sea una palabra válida (puedes personalizar esta lista)
+            const validJobs = ['student', 'teacher', 'engineer', 'doctor'];
+            const isJobValid = validJobs.includes(jobInput.toLowerCase());
+
+            if (isNameValid && isAgeValid && isJobValid) {
                 feedbackDiv.innerHTML = '¡Excelente! Has completado el diálogo correctamente.';
                 feedbackDiv.className = 'feedback correct';
             } else {
-                feedbackDiv.innerHTML = 'Por favor, completa todos los campos del diálogo.';
+                feedbackDiv.innerHTML = 'Por favor, verifica tus respuestas. Asegúrate de que el nombre sea válido, la edad sea un número, y el trabajo sea coherente.';
                 feedbackDiv.className = 'feedback incorrect';
             }
         }
 
         function checkFullDescription() {
-            const description = document.getElementById('full-description').value.toLowerCase();
+            const description = document.getElementById('full-description').value.trim().toLowerCase();
             const feedbackDiv = document.getElementById('full-description-feedback');
-            
-            const requiredElements = [
-                'name', 'age', 'job', 'nationality', 
-                'personality', 'appearance'
-            ];
-            
-            const matchedElements = requiredElements.filter(element => 
-                description.includes(element)
+
+            const requiredElements = ['name', 'age', 'job', 'nationality', 'personality', 'appearance'];
+            const matchedElements = requiredElements.filter(element => description.includes(element));
+
+            // Verificar que la descripción tenga al menos 20 palabras
+            const wordCount = description.split(/\s+/).length;
+
+            // Verificar que las frases sean coherentes (empiecen con "I am", "My name is", etc.)
+            const sentences = description.split('.');
+            const hasValidSentences = sentences.some(sentence => 
+                sentence.trim().startsWith('i am') || 
+                sentence.trim().startsWith('my name is') || 
+                sentence.trim().startsWith('i have')
             );
-            
-            if (description.split(' ').length >= 20 && matchedElements.length >= 4) {
-                feedbackDiv.innerHTML = '¡Fantástico! Has creado una descripción personal completa.';
+
+            if (wordCount >= 20 && matchedElements.length >= 4 && hasValidSentences) {
+                feedbackDiv.innerHTML = '¡Fantástico! Has creado una descripción personal completa y coherente.';
                 feedbackDiv.className = 'feedback correct';
             } else {
-                feedbackDiv.innerHTML = 'Intenta expandir tu descripción. Incluye más detalles personales.';
+                feedbackDiv.innerHTML = 'Intenta expandir tu descripción. Asegúrate de incluir al menos 20 palabras, 4 elementos requeridos, y frases coherentes.';
                 feedbackDiv.className = 'feedback incorrect';
+            }
+        }
+
+        function resetExercise(inputIds, feedbackId) {
+            // Si inputIds es un solo ID, conviértelo en un array
+            if (!Array.isArray(inputIds)) {
+                inputIds = [inputIds];
+            }
+
+            // Limpiar los campos de entrada
+            inputIds.forEach(id => {
+                const inputElement = document.getElementById(id);
+                if (inputElement) {
+                    inputElement.value = '';
+                }
+            });
+
+            // Limpiar el mensaje de retroalimentación
+            const feedbackElement = document.getElementById(feedbackId);
+            if (feedbackElement) {
+                feedbackElement.innerHTML = '';
+                feedbackElement.className = 'feedback';
             }
         }
 

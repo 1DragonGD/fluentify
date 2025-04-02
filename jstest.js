@@ -28,19 +28,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 audioFiles: ['audios/easy/greetings/greetings-1.mp3'],
                 questions: [
                     {
-                        title: "What is the name of the man introducing himself?",
-                        options: ["Jhon", "Emma", "Laura", "James"],
+                        title: "What is the man's name?",
+                        options: ["John", "Michael", "Peter", "David"],
                         correctAnswer: 0
                     },
                     {
+                        title: "What is the woman's name?",
+                        options: ["Emma", "Sarah", "Laura", "Mary"],
+                        correctAnswer: 1
+                    },
+                    {
                         title: "Where is Sarah from?",
-                        options: ["Canada", "United State", "Toronto", "New York"],
+                        options: ["Canada", "United States", "New York", "England"],
                         correctAnswer: 0
                     },
                     {
                         title: "Where does John live?",
-                        options: ["Australia", "London", "Canada", "United States"],
+                        options: ["Canada", "England", "Chicago", "New York"],
                         correctAnswer: 3
+                    },
+                    {
+                        title: "Has Sarah been to New York?",
+                        options: ["Yes", "No", "It's not mentioned", "She lives there"],
+                        correctAnswer: 1
                     }
                 ]
             },
@@ -48,13 +58,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 audioFiles: ['audios/easy/numbers/numbers-1.mp3'],
                 questions: [
                     {
-                        title: "What time is it when A asks for the time?",
-                        options: ["Two o'clock", "Three o'clock", "Four thirty", "Five o'clock"],
+                        title: "What time is it according to the conversation?",
+                        options: ["2:00", "3:00", "4:00", "4:30"],
                         correctAnswer: 1
                     },
                     {
-                        title: "Where does B recommend buying a watch?",
-                        options: ["On Fourth Avenue", "On Main Street", "On Fifth Avenue, number 23", "At the mall"],
+                        title: "How much did the digital watch cost?",
+                        options: ["$35", "$40", "$45", "$50"],
+                        correctAnswer: 3
+                    },
+                    {
+                        title: "When is the person's appointment?",
+                        options: ["3:00", "3:30", "4:00", "4:30"],
+                        correctAnswer: 3
+                    },
+                    {
+                        title: "What is the street number of the watch store?",
+                        options: ["13", "23", "33", "43"],
+                        correctAnswer: 1
+                    },
+                    {
+                        title: "On which street is the watch store located?",
+                        options: ["3rd Avenue", "4th Avenue", "5th Avenue", "6th Avenue"],
                         correctAnswer: 2
                     }
                 ]
@@ -65,14 +90,44 @@ document.addEventListener('DOMContentLoaded', function() {
                 audioFiles: ['audios/intermediate/conversations/conversations-1.mp3'],
                 questions: [
                     {
-                        title: "What event does Sarah want to attend over the weekend?",
-                        options: ["A music concert", "A sports game", "An art exhibition", "A theater play"],
+                        title: "What does Sarah plan to do over the weekend?",
+                        options: ["Go shopping", "Visit a museum", "Go to an art exhibition", "Have dinner"],
                         correctAnswer: 2
                     },
                     {
-                        title: "Why do they decide to meet at 3:00 PM?",
-                        options: ["Because Sarah has another appointment later", "Because the exhibition closes at 6:00 PM and they want enough time to see everything", "Because the restaurant only takes reservations before 6:00 PM", "Because they have dinner plans at 5:00 PM"],
+                        title: "Where is the exhibition located?",
+                        options: ["Downtown Gallery", "Modern Art Museum", "City Museum", "Art Center"],
                         correctAnswer: 1
+                    },
+                    {
+                        title: "Why do they decide to meet at 3:00 PM?",
+                        options: [
+                            "Because the museum opens at 3:00 PM",
+                            "Because the exhibition closes at 6:00 PM and they want enough time",
+                            "Because they have other plans earlier",
+                            "Because it's less crowded at that time"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        title: "What additional plan do they make?",
+                        options: [
+                            "Go shopping afterwards",
+                            "Have dinner at an Italian restaurant",
+                            "Visit another museum",
+                            "Meet friends later"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        title: "What time are they planning to have dinner?",
+                        options: [
+                            "5:30", 
+                            "6:00",
+                            "6:30",
+                            "7:00"
+                        ],
+                        correctAnswer: 2
                     }
                 ]
             },
@@ -80,14 +135,54 @@ document.addEventListener('DOMContentLoaded', function() {
                 audioFiles: ['audios/intermediate/problems/problems-1.mp3'],
                 questions: [
                     {
-                        title: "Why is A having a difficult time at work?",
-                        options: ["Their manager is being unfair", "They are not interested in their job", "They are given more projects than they can handle", "They don't like working with their team"],
+                        title: "What is the main problem discussed in the conversation?",
+                        options: [
+                            "Poor workplace conditions",
+                            "Low salary",
+                            "Too many projects to handle",
+                            "Difficult coworkers"
+                        ],
                         correctAnswer: 2
                     },
                     {
-                        title: "What solution does B suggest to A?",
-                        options: ["Quitting the job", "Ignoring the workload", "Preparing specific examples and suggesting solutions", "Asking for a salary raise"],
+                        title: "What happened when the person first tried to discuss this with their manager?",
+                        options: [
+                            "The manager got angry",
+                            "The manager was too busy to listen properly",
+                            "The manager denied there was a problem",
+                            "The manager promised to help"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        title: "What solution does the friend suggest first?",
+                        options: [
+                            "Quit the job",
+                            "Work overtime",
+                            "Request a formal meeting",
+                            "Complain to HR"
+                        ],
                         correctAnswer: 2
+                    },
+                    {
+                        title: "What specific solution is mentioned regarding workload distribution?",
+                        options: [
+                            "Hire more staff",
+                            "Work weekends",
+                            "Ask a new team member to help with research",
+                            "Reduce project scope"
+                        ],
+                        correctAnswer: 2
+                    },
+                    {
+                        title: "What does the friend emphasize at the end of the conversation?",
+                        options: [
+                            "Getting a promotion",
+                            "Work-life balance",
+                            "Meeting deadlines",
+                            "Team cooperation"
+                        ],
+                        correctAnswer: 1
                     }
                 ]
             }
@@ -97,36 +192,54 @@ document.addEventListener('DOMContentLoaded', function() {
                 audioFiles: ['audios/expert/complex/complex-1.mp3'],
                 questions: [
                     {
-                        title: "What made the narrator decide to become a teacher?",
-                        options: ["They lost their job in corporate finance", 
-                            "A friend convinced them to change careers", 
-                            "A rewarding experience tutoring a student named Miguel", 
-                            "They always wanted to be a teacher"],
+                        title: "What was the narrator's original career?",
+                        options: [
+                            "Teaching",
+                            "Corporate finance",
+                            "Mathematics",
+                            "Basketball coaching"
+                        ],
+                        correctAnswer: 1
+                    },
+                    {
+                        title: "How did the narrator start teaching?",
+                        options: [
+                            "Through a school program",
+                            "As a private tutor",
+                            "Through a volunteer program",
+                            "At a community college"
+                        ],
                         correctAnswer: 2
                     },
                     {
                         title: "How did the narrator help Miguel understand algebra?",
-                        options: ["By giving him extra homework", 
-                            "By asking another tutor to help him", 
-                            "By relating equations to his interest in basketball statistics", 
-                            "By telling him to practice more on his own"],
+                        options: [
+                            "Using traditional methods",
+                            "With extra homework",
+                            "Through basketball statistics",
+                            "With online tutorials"
+                        ],
                         correctAnswer: 2
                     },
                     {
-                        title: "How did the narrator’s colleagues react to their career change?",
-                        options: ["They fully supported the decision", 
-                            "They wanted to become teachers too", 
-                            "They were indifferent", 
-                            "They thought the narrator was having a midlife crisis"],
-                        correctAnswer: 3
+                        title: "How long ago did the narrator change careers?",
+                        options: [
+                            "Six months",
+                            "Five years",
+                            "Eight years",
+                            "Ten years"
+                        ],
+                        correctAnswer: 2
                     },
                     {
-                        title: "HWhat does the narrator find most rewarding about teaching?",
-                        options: ["Helping students overcome academic obstacles ", 
-                            "The opportunity to travel frequently", 
-                            "The high salary", 
-                            "The opportunity to travel frequently"],
-                        correctAnswer: 0
+                        title: "What was the colleagues' reaction to the career change?",
+                        options: [
+                            "They were supportive",
+                            "They were inspired",
+                            "They were indifferent",
+                            "They thought it was a midlife crisis"
+                        ],
+                        correctAnswer: 3
                     }
                 ]
             },
@@ -135,35 +248,53 @@ document.addEventListener('DOMContentLoaded', function() {
                 questions: [
                     {
                         title: "What surprised the narrator the most about Kyoto?",
-                        options: ["The city was exactly as they had imagined", 
-                            "It was too modern and not traditional enough", 
-                            "They didn’t enjoy their time in Kyoto", 
-                            "The experience of being there was beyond what guidebooks could prepare them for"],
+                        options: [
+                            "The research they had done",
+                            "The traditional wooden buildings",
+                            "Seeing geishas in the streets",
+                            "The experience was beyond what guidebooks described"
+                        ],
                         correctAnswer: 3
                     },
                     {
-                        title: "What lesson did the narrator learn from their experience at the temple?",
-                        options: ["How to speak Japanese fluently", 
-                            "That Kyoto is too crowded for meditation", 
-                            "The importance of 'ma' – the meaningful space between things", 
-                            "That meditation is too difficult to practice"],
+                        title: "When did the narrator visit the temple?",
+                        options: [
+                            "First day",
+                            "Second day",
+                            "Third day",
+                            "Fourth day"
+                        ],
                         correctAnswer: 2
                     },
                     {
                         title: "What did the elderly monk help the narrator with?",
-                        options: ["Practicing meditation techniques", 
-                            "Translating ancient scrolls", 
-                            "Finding a hidden tourist spot", 
-                            "Learning traditional Japanese calligraphy"],
+                        options: [
+                            "Meditation techniques and proper posture",
+                            "Understanding Japanese history",
+                            "Learning calligraphy",
+                            "Translating Japanese texts"
+                        ],
                         correctAnswer: 0
                     },
                     {
-                        title: "How did the narrator describe the contrast between the temple and the city?",
-                        options: ["The city was just as peaceful as the temple", 
-                            "The temple was serene, while the city outside was bustling", 
-                            "There was no real difference between the two", 
-                            "The temple was too isolated from the city"],
+                        title: "What was most notable about the temple's location?",
+                        options: [
+                            "It was in the city center",
+                            "The contrast between its serenity and the busy city outside",
+                            "It was far from other temples",
+                            "It was a popular tourist spot"
+                        ],
                         correctAnswer: 1
+                    },
+                    {
+                        title: "What important Japanese concept did the narrator learn about?",
+                        options: [
+                            "Ma - the space between things",
+                            "Zen meditation",
+                            "Traditional architecture",
+                            "Temple ceremonies"
+                        ],
+                        correctAnswer: 0
                     }
                 ]
             }
